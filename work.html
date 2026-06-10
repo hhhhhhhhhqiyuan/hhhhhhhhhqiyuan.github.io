@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Work Archive - NIKKI FU</title>
+    <meta
+      name="description"
+      content="A growing archive of NIKKI FU projects across independent sites, AI visuals, EDM, listings, and AI coding."
+    />
+    <style>
+      :root {
+        --ink: #111315;
+        --muted: #6e7378;
+        --line: #e2e5e8;
+        --paper: #f7f6f2;
+        --white: #ffffff;
+        --cyan: #42d5ff;
+        --lime: #cbff45;
+        --coral: #ff6f59;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 84% 10%, rgba(66, 213, 255, 0.16), transparent 28rem),
+          linear-gradient(180deg, #fbfaf6 0%, var(--paper) 46%, #ffffff 100%);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        letter-spacing: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100vw - 40px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(226, 229, 232, 0.7);
+        background: rgba(251, 250, 246, 0.82);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+
+      .brand {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand strong {
+        font-size: 15px;
+        font-weight: 720;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: #3c4145;
+        font-size: 13px;
+      }
+
+      .archive-hero {
+        padding: 76px 0 42px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 900px;
+        margin: 0;
+        font-size: clamp(48px, 8vw, 96px);
+        line-height: 0.95;
+        font-weight: 760;
+        letter-spacing: 0;
+      }
+
+      .intro {
+        max-width: 680px;
+        margin: 24px 0 0;
+        color: #3f464b;
+        font-size: 18px;
+        line-height: 1.62;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 30px 0 28px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .filter {
+        min-height: 38px;
+        padding: 0 15px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.7);
+        color: #30363a;
+        cursor: pointer;
+      }
+
+      .filter.active {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .work-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        padding: 34px 0 86px;
+      }
+
+      .project-card {
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+        box-shadow: 0 16px 60px rgba(17, 19, 21, 0.06);
+      }
+
+      .project-visual {
+        min-height: 212px;
+        position: relative;
+        overflow: hidden;
+        background: #f4f5f3;
+      }
+
+      .project-visual.site {
+        background:
+          linear-gradient(135deg, rgba(203, 255, 69, 0.85), transparent 34%),
+          linear-gradient(160deg, #f9faf7 0%, #e6edf0 70%);
+      }
+
+      .project-visual.ai {
+        background:
+          radial-gradient(circle at 32% 35%, rgba(66, 213, 255, 0.86), transparent 22%),
+          radial-gradient(circle at 70% 44%, rgba(255, 111, 89, 0.62), transparent 28%),
+          #f8f8f5;
+      }
+
+      .project-visual.code {
+        background:
+          linear-gradient(90deg, rgba(17, 19, 21, 0.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(17, 19, 21, 0.08) 1px, transparent 1px),
+          #f9faf7;
+        background-size: 28px 28px;
+      }
+
+      .project-visual::after {
+        content: "";
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        right: 30px;
+        bottom: 24px;
+        border: 1px solid rgba(17, 19, 21, 0.16);
+        border-radius: 50%;
+        background:
+          conic-gradient(from 210deg, #ffffff, var(--cyan), var(--lime), var(--coral), #ffffff);
+        box-shadow: 0 22px 60px rgba(17, 19, 21, 0.14);
+      }
+
+      .project-body {
+        padding: 22px;
+      }
+
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .project-body h2 {
+        margin: 18px 0 10px;
+        font-size: 27px;
+        line-height: 1.05;
+      }
+
+      .project-body p {
+        margin: 0;
+        color: #596066;
+        font-size: 14px;
+        line-height: 1.58;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .tag {
+        padding: 6px 9px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #4e565c;
+        font-size: 12px;
+      }
+
+      .footer {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      @media (max-width: 940px) {
+        .work-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100vw - 26px, 1180px);
+        }
+
+        .nav-inner {
+          height: auto;
+          min-height: 68px;
+          align-items: flex-start;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          gap: 12px;
+          font-size: 12px;
+        }
+
+        h1 {
+          font-size: 52px;
+        }
+
+        .work-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="shell nav-inner">
+        <a class="brand" href="index.html" aria-label="NIKKI FU home">
+          <strong>NIKKI FU</strong>
+          <span>Future Visual Systems</span>
+        </a>
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="index.html#work">Selected</a>
+          <a href="work.html">Archive</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="shell archive-hero">
+        <p class="eyebrow">Work Archive</p>
+        <h1>A growing library of commercial visuals, AI systems, and coded interfaces.</h1>
+        <p class="intro">
+          Use this page as the expandable project library. The homepage stays curated; this
+          archive can grow into independent sites, AI images, EDM, listings, campaign work,
+          and creative coding experiments.
+        </p>
+      </section>
+
+      <section class="shell" aria-label="Project filters">
+        <div class="filters" id="filters"></div>
+        <div class="work-list" id="workList"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">NIKKI FU / 付奇缘 - Future Visual Systems</div>
+    </footer>
+
+    <script src="data/projects.js"></script>
+    <script>
+      const projects = window.NIKKI_PROJECTS || [];
+      const categories = [
+        "All",
+        "Independent Sites",
+        "AI Visuals",
+        "EDM",
+        "Product Listing",
+        "AI Coding",
+        "Brand / Campaign",
+      ];
+
+      const filters = document.querySelector("#filters");
+      const workList = document.querySelector("#workList");
+
+      function getInitialCategory() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("filter") || "All";
+      }
+
+      function renderFilters(activeCategory) {
+        filters.innerHTML = categories
+          .map(
+            (category) =>
+              `<button class="filter ${category === activeCategory ? "active" : ""}" type="button" data-category="${category}">${category}</button>`
+          )
+          .join("");
+      }
+
+      function renderProjects(activeCategory) {
+        const visible =
+          activeCategory === "All"
+            ? projects
+            : projects.filter((project) => project.category === activeCategory);
+
+        workList.innerHTML = visible
+          .map(
+            (project) => `
+              <a class="project-card" href="${project.url}">
+                <div class="project-visual ${project.theme}" aria-hidden="true"></div>
+                <div class="project-body">
+                  <div class="meta">
+                    <span>${project.category}</span>
+                    <span>${project.year}</span>
+                  </div>
+                  <h2>${project.title}</h2>
+                  <p>${project.summary}</p>
+                  <div class="tags">
+                    ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+                  </div>
+                </div>
+              </a>
+            `
+          )
+          .join("");
+      }
+
+      function setCategory(category) {
+        const activeCategory = categories.includes(category) ? category : "All";
+        renderFilters(activeCategory);
+        renderProjects(activeCategory);
+      }
+
+      filters.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-category]");
+        if (!button) return;
+        setCategory(button.dataset.category);
+      });
+
+      setCategory(getInitialCategory());
+    </script>
+  </body>
+</html>
