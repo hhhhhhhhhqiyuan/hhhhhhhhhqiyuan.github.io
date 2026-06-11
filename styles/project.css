@@ -184,6 +184,16 @@ h1 {
   transform: translateX(-14%);
 }
 
+.browser-preview.fit-image {
+  height: auto;
+}
+
+.browser-preview.fit-image img {
+  width: 100%;
+  max-width: 100%;
+  transform: none;
+}
+
 .hero-visual {
   min-height: 480px;
   margin-top: 42px;
@@ -377,6 +387,19 @@ h2 {
   width: 180%;
   max-width: none;
   transform: translateX(-50%) translateY(-4%);
+}
+
+.page-crop.static-image {
+  min-height: 0;
+}
+
+.page-crop.static-image img {
+  position: static;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  transform: none;
 }
 
 .commerce-path {
