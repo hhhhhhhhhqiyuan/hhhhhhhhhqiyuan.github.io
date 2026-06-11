@@ -578,3 +578,379 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+
+.case-acacia {
+  --acacia-green: #023f2d;
+  --acacia-dark: #09120f;
+  --acacia-cream: #f6f2e8;
+  --acacia-mist: #dce8df;
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, #f7f4ea 0%, #ffffff 45%, #f4f7f2 100%);
+}
+
+.case-acacia .nav {
+  background: rgba(246, 242, 232, 0.82);
+}
+
+.acacia-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 78px 0 56px;
+  background:
+    linear-gradient(90deg, rgba(9, 18, 15, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #f8f4eb 0%, #ffffff 100%);
+  background-size: 72px 100%, auto;
+}
+
+.acacia-hero::after {
+  content: "ACACIA";
+  position: absolute;
+  left: 50%;
+  bottom: -0.16em;
+  color: rgba(2, 63, 45, 0.055);
+  font-size: clamp(110px, 21vw, 310px);
+  font-weight: 760;
+  line-height: 0.78;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.acacia-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.64fr) minmax(520px, 0.95fr);
+  gap: 46px;
+  align-items: center;
+  min-height: calc(100vh - 128px);
+}
+
+.acacia-hero-copy h1 {
+  max-width: 660px;
+  font-size: clamp(54px, 7.8vw, 118px);
+  letter-spacing: 0;
+}
+
+.acacia-hero-copy .intro {
+  max-width: 560px;
+}
+
+.acacia-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 650px;
+  padding: 44px 0 0 42px;
+}
+
+.acacia-stage::before {
+  content: "";
+  position: absolute;
+  inset: 8% 0 2% 12%;
+  border: 1px solid rgba(246, 242, 232, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(2, 63, 45, 0.98), rgba(9, 18, 15, 0.98)),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgba(246, 242, 232, 0.045) 38px 39px);
+  box-shadow: 0 42px 120px rgba(9, 18, 15, 0.22);
+}
+
+.stage-label {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 7%;
+  color: var(--acacia-dark);
+  font-size: clamp(44px, 7vw, 92px);
+  font-weight: 760;
+  line-height: 0.88;
+}
+
+.stage-screen {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 26px 80px rgba(9, 18, 15, 0.26);
+}
+
+.stage-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.primary-screen {
+  left: 0;
+  top: 82px;
+  width: min(78%, 660px);
+  aspect-ratio: 1.42;
+}
+
+.detail-screen {
+  right: 0;
+  bottom: 10px;
+  width: min(45%, 360px);
+  aspect-ratio: 0.92;
+}
+
+.detail-screen img {
+  object-position: center top;
+}
+
+.acacia-signal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: -22px;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  border: 1px solid rgba(9, 18, 15, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 20px 70px rgba(9, 18, 15, 0.1);
+}
+
+.acacia-signal div {
+  min-height: 108px;
+  padding: 24px;
+  border-right: 1px solid var(--line);
+}
+
+.acacia-signal div:last-child {
+  border-right: 0;
+}
+
+.acacia-signal span,
+.acacia-gallery figcaption span {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.acacia-signal strong {
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.acacia-blackout {
+  margin-top: 76px;
+  padding: 92px 0;
+  background: var(--acacia-dark);
+  color: #ffffff;
+}
+
+.blackout-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.45fr) minmax(0, 0.72fr);
+  gap: 52px;
+  align-items: center;
+}
+
+.blackout-copy {
+  max-width: 500px;
+}
+
+.blackout-copy .eyebrow {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.blackout-copy h2 {
+  color: #ffffff;
+}
+
+.blackout-copy p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.blackout-image {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.42);
+}
+
+.blackout-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.acacia-case-text {
+  margin-top: 72px;
+  margin-bottom: 72px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.acacia-case-text h2 {
+  max-width: 760px;
+}
+
+.acacia-product-band {
+  background:
+    linear-gradient(90deg, #ffffff 0%, #ffffff 38%, var(--acacia-cream) 38%, var(--acacia-cream) 100%);
+}
+
+.angled-showcase {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(9, 18, 15, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 28px 90px rgba(9, 18, 15, 0.12);
+  transform: rotate(1.2deg);
+}
+
+.angled-showcase img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.acacia-gallery {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+  padding: 92px 0 34px;
+  align-items: start;
+}
+
+.acacia-gallery figure {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(9, 18, 15, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(9, 18, 15, 0.09);
+}
+
+.acacia-gallery figure:nth-child(2) {
+  margin-top: 62px;
+}
+
+.acacia-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.acacia-gallery figcaption {
+  padding: 18px 20px 22px;
+  border-top: 1px solid var(--line);
+}
+
+.acacia-gallery figcaption strong {
+  display: block;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.acacia-outro {
+  padding: 26px 0 98px;
+}
+
+.acacia-outro h2 {
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.acacia-outro .study-list {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1050px) {
+  .acacia-hero-grid,
+  .blackout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .acacia-stage {
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 760px) {
+  .acacia-hero {
+    padding-top: 44px;
+  }
+
+  .acacia-hero-grid {
+    min-height: 0;
+  }
+
+  .acacia-stage {
+    min-height: 500px;
+    padding-left: 0;
+  }
+
+  .acacia-hero-copy h1 {
+    max-width: 330px;
+    font-size: 38px;
+    line-height: 1.04;
+  }
+
+  .acacia-hero-copy .intro {
+    max-width: 330px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .stage-label {
+    left: 0;
+    right: auto;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 40px;
+    white-space: nowrap;
+  }
+
+  .case-acacia .nav-links {
+    display: none;
+  }
+
+  .primary-screen {
+    top: 76px;
+    width: 92%;
+  }
+
+  .detail-screen {
+    width: 54%;
+  }
+
+  .acacia-signal,
+  .acacia-gallery,
+  .acacia-outro .study-list {
+    grid-template-columns: 1fr;
+  }
+
+  .acacia-signal div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .acacia-signal div:last-child {
+    border-bottom: 0;
+  }
+
+  .acacia-product-band {
+    background: var(--acacia-cream);
+  }
+
+  .angled-showcase {
+    transform: none;
+  }
+
+  .acacia-gallery figure:nth-child(2) {
+    margin-top: 0;
+  }
+}
