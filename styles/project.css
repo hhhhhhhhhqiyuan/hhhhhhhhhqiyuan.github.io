@@ -178,8 +178,10 @@ h1 {
 
 .browser-preview img {
   display: block;
-  width: 100%;
+  width: 165%;
   height: auto;
+  max-width: none;
+  transform: translateX(-14%);
 }
 
 .hero-visual {
@@ -365,6 +367,16 @@ h2 {
 
 .page-crop.tall {
   min-height: 680px;
+}
+
+.page-crop.homepage-crop {
+  min-height: 520px;
+}
+
+.page-crop.homepage-crop img {
+  width: 180%;
+  max-width: none;
+  transform: translateX(-50%) translateY(-4%);
 }
 
 .commerce-path {
