@@ -596,74 +596,67 @@ h2 {
 .acacia-hero {
   position: relative;
   overflow: hidden;
-  padding: 78px 0 56px;
+  padding: 104px 0 78px;
   background:
-    linear-gradient(90deg, rgba(9, 18, 15, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(9, 18, 15, 0.045) 1px, transparent 1px),
     linear-gradient(180deg, #f8f4eb 0%, #ffffff 100%);
   background-size: 72px 100%, auto;
 }
 
 .acacia-hero::after {
-  content: "ACACIA";
-  position: absolute;
-  left: 50%;
-  bottom: -0.16em;
-  color: rgba(2, 63, 45, 0.055);
-  font-size: clamp(110px, 21vw, 310px);
-  font-weight: 760;
-  line-height: 0.78;
-  transform: translateX(-50%);
-  pointer-events: none;
+  content: none;
 }
 
 .acacia-hero-grid {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.64fr) minmax(520px, 0.95fr);
-  gap: 46px;
+  grid-template-columns: minmax(360px, 0.46fr) minmax(520px, 0.74fr);
+  gap: 76px;
   align-items: center;
-  min-height: calc(100vh - 128px);
+  min-height: calc(100vh - 180px);
 }
 
 .acacia-hero-copy h1 {
-  max-width: 660px;
-  font-size: clamp(54px, 7.8vw, 118px);
+  max-width: 520px;
+  font-size: clamp(48px, 5.6vw, 84px);
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
 .acacia-hero-copy .intro {
-  max-width: 560px;
+  max-width: 500px;
 }
 
 .acacia-stage {
   position: relative;
   overflow: hidden;
-  min-height: 650px;
-  padding: 44px 0 0 42px;
+  min-height: 570px;
+  padding: 34px;
 }
 
 .acacia-stage::before {
   content: "";
   position: absolute;
-  inset: 8% 0 2% 12%;
+  inset: 0;
   border: 1px solid rgba(246, 242, 232, 0.16);
   border-radius: 8px;
   background:
     linear-gradient(135deg, rgba(2, 63, 45, 0.98), rgba(9, 18, 15, 0.98)),
-    repeating-linear-gradient(90deg, transparent 0 38px, rgba(246, 242, 232, 0.045) 38px 39px);
-  box-shadow: 0 42px 120px rgba(9, 18, 15, 0.22);
+    repeating-linear-gradient(90deg, transparent 0 52px, rgba(246, 242, 232, 0.032) 52px 53px);
+  box-shadow: 0 34px 95px rgba(9, 18, 15, 0.16);
 }
 
 .stage-label {
   position: absolute;
   z-index: 3;
-  top: 0;
-  right: 7%;
-  color: var(--acacia-dark);
-  font-size: clamp(44px, 7vw, 92px);
-  font-weight: 760;
-  line-height: 0.88;
+  top: 24px;
+  left: 28px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .stage-screen {
@@ -685,27 +678,17 @@ h2 {
 }
 
 .primary-screen {
-  left: 0;
-  top: 82px;
-  width: min(78%, 660px);
+  left: 50%;
+  top: 50%;
+  width: calc(100% - 68px);
   aspect-ratio: 1.42;
-}
-
-.detail-screen {
-  right: 0;
-  bottom: 10px;
-  width: min(45%, 360px);
-  aspect-ratio: 0.92;
-}
-
-.detail-screen img {
-  object-position: center top;
+  transform: translate(-50%, -46%);
 }
 
 .acacia-signal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: -22px;
+  margin-top: 34px;
   position: relative;
   z-index: 3;
   overflow: hidden;
@@ -875,13 +858,13 @@ h2 {
   }
 
   .acacia-stage {
-    min-height: 600px;
+    min-height: 560px;
   }
 }
 
 @media (max-width: 760px) {
   .acacia-hero {
-    padding-top: 44px;
+    padding: 48px 0 44px;
   }
 
   .acacia-hero-grid {
@@ -889,8 +872,8 @@ h2 {
   }
 
   .acacia-stage {
-    min-height: 500px;
-    padding-left: 0;
+    min-height: 330px;
+    padding: 18px;
   }
 
   .acacia-hero-copy h1 {
@@ -906,11 +889,12 @@ h2 {
   }
 
   .stage-label {
-    left: 0;
-    right: auto;
+    top: 16px;
+    left: 18px;
     max-width: 100%;
     overflow: hidden;
-    font-size: 40px;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 11px;
     white-space: nowrap;
   }
 
@@ -919,12 +903,8 @@ h2 {
   }
 
   .primary-screen {
-    top: 76px;
-    width: 92%;
-  }
-
-  .detail-screen {
-    width: 54%;
+    width: calc(100% - 36px);
+    top: 54%;
   }
 
   .acacia-signal,
