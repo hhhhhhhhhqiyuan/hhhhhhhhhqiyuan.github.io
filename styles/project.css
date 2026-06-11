@@ -244,6 +244,32 @@ h2 {
   padding: 0 0 90px;
 }
 
+.showcase-frame {
+  margin: 18px auto 34px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 20px 80px rgba(17, 19, 21, 0.08);
+}
+
+.showcase-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.showcase-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .image-slot {
   min-height: 240px;
   display: grid;
