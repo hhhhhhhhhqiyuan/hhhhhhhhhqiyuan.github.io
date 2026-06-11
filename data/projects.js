@@ -1,16 +1,16 @@
 window.NIKKI_PROJECTS = [
   {
-    slug: "independent-sites-launch-system",
-    title: "Independent Sites Launch System",
+    slug: "001",
+    title: "Acacia Outdoor Website",
     category: "Independent Sites",
     year: "2026",
-    type: "Launch page / E-commerce / Frontend",
+    type: "Shopify / E-commerce / Landing experience",
     summary:
-      "Premium independent-site direction for products that need a clean story, strong hierarchy, and a conversion path.",
-    tags: ["Landing", "E-commerce", "Visual Direction", "Frontend"],
+      "A commercial outdoor-gear website experience for Space Acacia, built around product storytelling, seasonal Costco promotion, and e-commerce conversion.",
+    tags: ["Shopify", "E-commerce", "Landing", "Product Story"],
     featured: true,
     theme: "site",
-    url: "projects/independent-sites-launch-system.html",
+    url: "projects/001.html",
   },
   {
     slug: "ai-visual-commerce-system",
