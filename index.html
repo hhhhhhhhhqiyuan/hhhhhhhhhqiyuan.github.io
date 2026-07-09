@@ -6,7 +6,7 @@
     <title>NIKKI FU - Future Visual Systems</title>
     <meta
       name="description"
-      content="NIKKI FU is a future visual systems portfolio for commercial visuals, AI imagery, independent sites, and coded brand experiences."
+      content="NIKKI FU is a future visual systems portfolio for integrated marketing, independent sites, Amazon content, social media, EDM, AI imagery, and AI coding."
     />
     <style>
       :root {
@@ -32,6 +32,7 @@
       body {
         margin: 0;
         color: var(--ink);
+        overflow-x: hidden;
         background:
           radial-gradient(circle at 86% 8%, rgba(66, 213, 255, 0.18), transparent 28rem),
           linear-gradient(180deg, #fbfaf6 0%, var(--paper) 42%, #ffffff 100%);
@@ -118,10 +119,12 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        max-width: 100%;
         width: fit-content;
         margin-bottom: 28px;
         color: #4c5257;
         font-size: 13px;
+        line-height: 1.35;
       }
 
       .kicker::before {
@@ -703,7 +706,8 @@
 
       @media (max-width: 640px) {
         .shell {
-          width: min(100vw - 26px, 1180px);
+          width: calc(100vw - 26px);
+          max-width: calc(100vw - 26px);
         }
 
         .nav-inner {
@@ -714,16 +718,24 @@
         }
 
         .nav-links {
-          gap: 10px;
-          font-size: 12px;
-        }
-
-        .nav-links a:nth-child(3) {
           display: none;
         }
 
         .hero {
           min-height: auto;
+          overflow: hidden;
+        }
+
+        .hero > div,
+        .kicker,
+        .hero-copy,
+        .zh-line {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+        }
+
+        .hero-stage {
+          overflow: hidden;
         }
 
         h1 {
@@ -732,6 +744,11 @@
 
         .hero-copy {
           font-size: 19px;
+          max-width: 340px;
+        }
+
+        .zh-line {
+          max-width: 340px;
         }
 
         .hero-stage {
@@ -783,13 +800,13 @@
     <main id="top">
       <section class="shell hero" aria-labelledby="hero-title">
         <div>
-          <p class="kicker">Commercial visuals / AI imagery / Creative coding</p>
+          <p class="kicker">Integrated marketing / Commerce visuals / AI coding</p>
           <h1 id="hero-title">NIKKI FU</h1>
           <p class="hero-copy">
-            AI is the future. I design how it looks, sells, and ships.
+            AI is the future. I build commerce systems that look, sell, and scale.
           </p>
           <p class="zh-line">
-            我是付奇缘，Nikki。用商业视觉、AI 图像和代码，把品牌表达做成能被看见、被理解、被转化的系统。
+            我是付奇缘，Nikki。整合独立站、Amazon、社交媒体、EDM、AI 图像和 AI coding，让品牌内容能被看见、理解并转化。
           </p>
           <div class="actions">
             <a class="btn primary" href="#work">View selected work</a>
@@ -805,7 +822,7 @@
           <div class="metric-card">
             <small>Portfolio Signal</small>
             <strong>3.0x</strong>
-            <span>Visual direction + marketing thinking + coded execution.</span>
+            <span>Integrated marketing + e-commerce channels + AI-coded execution.</span>
           </div>
         </div>
       </section>
@@ -814,33 +831,34 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">What I build</p>
-            <h2 id="systems-title">Visual systems with commercial intent.</h2>
+            <h2 id="systems-title">Integrated marketing systems for commerce brands.</h2>
           </div>
           <p>
-            The portfolio is organized by business use, not file format: launch pages,
-            AI visual systems, product listings, EDM campaigns, and interactive tools.
+            The portfolio is organized by growth channel, not file format: independent
+            sites, Amazon listings, social content, EDM campaigns, AI visuals, and
+            AI-coded tools that connect strategy to execution.
           </p>
         </div>
         <div class="capabilities">
           <article class="capability">
             <span>01</span>
-            <h3>Visual Direction</h3>
-            <p>Brand mood, art direction, layout systems, color logic, and campaign language.</p>
+            <h3>Independent Sites</h3>
+            <p>Shopify pages, landing experiences, product storytelling, and conversion-focused storefront systems.</p>
           </article>
           <article class="capability">
             <span>02</span>
-            <h3>Marketing Assets</h3>
-            <p>EDM, listing, paid creative, product storytelling, and conversion-first visuals.</p>
+            <h3>Amazon & Listings</h3>
+            <p>Marketplace content, product listing structure, image hierarchy, selling points, and visual proof.</p>
           </article>
           <article class="capability">
             <span>03</span>
-            <h3>Independent Sites</h3>
-            <p>Landing pages and e-commerce experiences that feel premium and clear.</p>
+            <h3>Social & EDM</h3>
+            <p>Campaign assets, email marketing, social media content direction, and channel-ready visual systems.</p>
           </article>
           <article class="capability">
             <span>04</span>
-            <h3>AI Coding</h3>
-            <p>Interactive systems, AI-assisted prototypes, and code as a visual medium.</p>
+            <h3>AI Visuals & Coding</h3>
+            <p>AI image production, coded prototypes, workflow tools, and interactive systems for faster creative execution.</p>
           </article>
         </div>
       </section>
@@ -849,12 +867,12 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Selected work</p>
-            <h2 id="work-title">Three entry points for recruiters and clients.</h2>
+            <h2 id="work-title">Three entry points into the full commerce system.</h2>
           </div>
           <p>
-            These are placeholders for your real projects. The final version can turn each
-            card into a case study with goal, audience, visual strategy, execution, business
-            use, and technical layer. For a larger library, open the full archive.
+            Each project can show one layer of the same capability: website experience,
+            AI-assisted commercial visuals, and AI coding that turns marketing ideas into
+            usable systems.
           </p>
         </div>
 
