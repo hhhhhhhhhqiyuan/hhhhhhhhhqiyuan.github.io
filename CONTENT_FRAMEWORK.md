@@ -10,6 +10,59 @@ The goal is not to make one beautiful page at a time. The goal is to build a rep
 4. Curate and edit the content.
 5. Fill it into webpages.
 
+## 0. Working Rhythm
+
+Nikki plans to spend about 1 hour per workday on the portfolio.
+
+The workflow should protect content ownership: Nikki controls the facts, taste, priorities,
+and final wording. AI and Codex support structure, options, editing, and web implementation.
+
+### Weekly 1-Hour Rhythm
+
+Use one focused task per day.
+
+Monday: Choose and frame
+
+- Pick one project, section, or content area.
+- Decide what this piece should prove.
+- Collect links, screenshots, Figma exports, notes, or rough memories.
+
+Tuesday: Fill the content template
+
+- Use `PROJECT_CONTENT_TEMPLATE.md`.
+- Write rough facts only.
+- Do not polish yet.
+
+Wednesday: Shape the content
+
+- Turn raw facts into outline.
+- Decide what to keep, cut, or emphasize.
+- Ask AI for options only after the facts are clear.
+
+Thursday: Page translation
+
+- Decide what goes into the webpage.
+- Choose images and order.
+- Create or update the page layout.
+
+Friday: Review and publish
+
+- Read the page as a recruiter or client.
+- Remove weak claims and vague words.
+- Commit and publish only when the content still feels like Nikki.
+
+### Daily 1-Hour Session Template
+
+Use this structure:
+
+1. 5 minutes: decide the exact goal for this hour.
+2. 35 minutes: do only the main task.
+3. 10 minutes: organize files, notes, or screenshots.
+4. 10 minutes: write the next action for tomorrow.
+
+Do not try to finish a whole project in one session. A strong case study can take several
+short sessions.
+
 ## 1. Big Framework
 
 ### Positioning
