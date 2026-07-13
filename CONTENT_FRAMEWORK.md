@@ -39,8 +39,10 @@ Wednesday: Shape the content
 - Decide what to keep, cut, or emphasize.
 - Ask AI for options only after the facts are clear.
 
-Thursday: Page translation
+Thursday: Image production and page translation
 
+- Decide which images are real project proof and which images need AI generation.
+- Generate or select images.
 - Decide what goes into the webpage.
 - Choose images and order.
 - Create or update the page layout.
@@ -62,6 +64,60 @@ Use this structure:
 
 Do not try to finish a whole project in one session. A strong case study can take several
 short sessions.
+
+### Image-Heavy Workflow
+
+Many portfolio sections will be image-driven. Treat images as content, not decoration.
+
+Use three image types:
+
+1. Real project proof
+   - Screenshots
+   - Figma exports
+   - Shopify pages
+   - Amazon listing images
+   - EDM screenshots
+   - Social layouts
+
+2. AI-generated supporting visuals
+   - Mood images
+   - Campaign atmospheres
+   - Concept visuals
+   - Background scenes
+   - Abstract system visuals
+
+3. Web presentation images
+   - Cropped hero image
+   - Detail modules
+   - Gallery images
+   - Mobile preview
+   - Process board
+
+Rule:
+
+- Real project proof shows what Nikki actually worked on.
+- AI-generated visuals can support the story, but should not pretend to be real client output.
+- Web presentation images are edited, cropped, and ordered for the portfolio page.
+
+### Image Session Template
+
+For a 1-hour image session:
+
+1. 10 minutes: decide what the page needs visually.
+2. 15 minutes: collect or export real project images.
+3. 20 minutes: ask ChatGPT to generate missing support images or image prompts.
+4. 10 minutes: choose the strongest images.
+5. 5 minutes: rename and place files in the right folder.
+
+Suggested naming:
+
+- `cover.jpg`
+- `hero.jpg`
+- `detail-01.jpg`
+- `detail-02.jpg`
+- `mobile.jpg`
+- `ai-mood-01.jpg`
+- `process-01.jpg`
 
 ## 1. Big Framework
 

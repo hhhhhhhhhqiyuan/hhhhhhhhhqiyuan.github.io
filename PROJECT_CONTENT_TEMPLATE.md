@@ -41,6 +41,41 @@ Images available:
 
 Notes / facts:
 
+## Image Plan
+
+Real project proof needed:
+
+- Screenshot / Figma export:
+- Website page:
+- Amazon / listing image:
+- EDM / email:
+- Social content:
+- Process / before-after:
+
+AI-generated support images needed:
+
+- Mood / atmosphere:
+- Concept visual:
+- Abstract system visual:
+- Background / hero support:
+- Other:
+
+Web presentation images to create:
+
+- cover:
+- hero:
+- detail 01:
+- detail 02:
+- mobile:
+- gallery:
+
+Image notes:
+
+- What must be true / realistic:
+- What can be more conceptual:
+- What should not be faked:
+- Desired visual style:
+
 ## Content Brief
 
 What is this project in one sentence?
@@ -124,4 +159,28 @@ Write a polished but concrete case study draft:
 
 Tone:
 Professional, smart, commercial, future-facing, not exaggerated.
+```
+
+## AI Prompt For Image Planning
+
+```text
+You are helping me plan image content for a portfolio case study.
+
+Nikki's positioning:
+Integrated marketing systems for commerce brands, combining independent sites,
+Amazon listings, social content, EDM, AI visuals, and AI coding.
+
+Use this project information:
+[paste project info]
+
+Help me create an image plan:
+1. Which images should be real project proof?
+2. Which images can be AI-generated supporting visuals?
+3. Which images should be used as hero, detail modules, and gallery?
+4. Give me 5 image generation prompts if support visuals are needed.
+
+Important:
+Do not suggest fake client results.
+Separate real proof from conceptual support visuals.
+Keep the style premium, commercial, bright, and future-facing.
 ```
