@@ -129,6 +129,23 @@ The portfolio should present a hybrid commercial role:
 
 > Integrated marketing systems for commerce brands, combining independent sites, Amazon listings, social content, EDM, AI visuals, and AI coding.
 
+### Current Work Reality
+
+Nikki currently works in a cross-border e-commerce company on brand-related work.
+
+This includes:
+
+- Independent site UI / UX design
+- Shopify-based independent site building
+- Amazon listing content and image systems
+- AI image generation workflows for commercial assets
+- Market awareness for cross-border e-commerce
+- Overseas marketing basics, including social media, KOL, EDM, and related marketing tools
+
+This is the strongest factual base for the portfolio. The website should make this feel like
+one connected capability: brand thinking + e-commerce execution + marketing channels + AI
+production workflow.
+
 ### Core Identity
 
 - Chinese name: 付奇缘
@@ -499,3 +516,11 @@ Include a project if it proves at least one of these:
 - I can use coding to make a tool, interaction, prototype, or webpage.
 
 The strongest projects prove two or more at the same time.
+
+For a 5-project portfolio, aim to cover:
+
+1. One independent site / Shopify project
+2. One Amazon listing or marketplace content project
+3. One AI image workflow or AI commercial visual project
+4. One social / EDM / overseas marketing content project
+5. One integrated campaign or AI coding project that connects multiple capabilities
