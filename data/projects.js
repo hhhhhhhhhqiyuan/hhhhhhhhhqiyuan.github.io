@@ -1,41 +1,44 @@
 window.NIKKI_PROJECTS = [
   {
-    slug: "001",
-    title: "Acacia Outdoor Website",
-    category: "Independent Sites",
-    year: "2026",
-    type: "Shopify / E-commerce / Landing experience",
-    summary:
-      "A commercial outdoor-gear website experience for Space Acacia, built around product storytelling, seasonal Costco promotion, and e-commerce conversion.",
-    tags: ["Shopify", "E-commerce", "Landing", "Product Story"],
-    featured: true,
-    theme: "site",
-    url: "projects/001.html",
+    index: "01",
+    title: "ACACIA",
+    category: "Brand / Campaign / DTC",
+    summary: "从一个产品出发，建立品牌、验证市场，并搭建长期增长的独立站。",
+    url: "projects/acacia.html"
   },
   {
-    slug: "ai-visual-commerce-system",
-    title: "AI Visual Commerce System",
-    category: "AI Visuals",
-    year: "2026",
-    type: "AI image / EDM / Listing",
-    summary:
-      "AI-driven image language for marketing assets, product listings, EDM campaigns, and commercial atmospheres.",
-    tags: ["AI Image", "EDM", "Listing", "Campaign"],
-    featured: true,
-    theme: "ai",
-    url: "projects/ai-visual-commerce-system.html",
+    index: "02",
+    title: "EAST OAK",
+    category: "E-commerce Growth",
+    summary: "从网站改版，到可用的电商增长系统。",
+    url: "projects/east-oak.html"
   },
   {
-    slug: "ai-coding-signal-mixer",
-    title: "AI Coding Signal Mixer",
-    category: "AI Coding",
-    year: "2026",
-    type: "Interactive system / Creative coding",
-    summary:
-      "A coded mini interaction that turns visual, marketing, and code inputs into a living brand-positioning signal.",
-    tags: ["Creative Coding", "Interaction", "Prototype", "AI Workflow"],
-    featured: true,
-    theme: "code",
-    url: "projects/ai-coding-signal-mixer.html",
+    index: "03",
+    title: "LE LIAN",
+    category: "Shopify Commerce",
+    summary: "把 48 款手串，变成容易理解和购买的商品系统。",
+    url: "projects/lelian.html"
   },
+  {
+    index: "04",
+    title: "AI Image Workflow",
+    category: "Small Project",
+    summary: "AI 生图、营销主视觉、Listing 场景图和内容生产流程。",
+    url: "work.html"
+  },
+  {
+    index: "05",
+    title: "Amazon Listing Visual",
+    category: "Small Project",
+    summary: "从卖点、结构图、场景图到 A+ 页面信息表达。",
+    url: "work.html"
+  },
+  {
+    index: "06",
+    title: "EDM Campaign System",
+    category: "Small Project",
+    summary: "新品上市、节日活动、召回、复购和用户生命周期内容。",
+    url: "work.html"
+  }
 ];
