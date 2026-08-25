@@ -1,0 +1,122 @@
+:root{
+  --paper:#f2f1ef;
+  --ink:#171916;
+  --secondary:#65615b;
+  --border:#d8d2c8;
+  --canvas:#f3efe7;
+  --pine:#173f35;
+  --footer:#171916;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#d0d0d0;color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+h1,h2,h3,p,figure{margin:0}
+.landing-page{width:min(100%,1440px);margin:0 auto;background:var(--paper);overflow:hidden}
+.eyebrow{font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em}
+.project-no{font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:500;line-height:20px;letter-spacing:.02em}
+
+.landing-header{height:72px;padding:0 60px 0 64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--paper);font-family:Inter,"Helvetica Neue",Arial,sans-serif}
+.landing-header .brand{width:300px;font-size:14px;font-weight:500;line-height:20px;letter-spacing:.02em;color:var(--secondary)}
+.landing-header nav{display:flex;gap:20px}
+.landing-header nav a{width:70px;font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em}
+.landing-header nav a:last-child{width:90px}
+
+.landing-hero{position:relative;height:678px}
+.landing-hero__copy{position:absolute;left:64px;top:78px;width:770px}
+.landing-hero h1{margin-top:127px;font-size:60px;font-weight:700;line-height:72px;letter-spacing:0}
+.hero-body{width:620px;margin-top:35px;font-size:20px;font-weight:400;line-height:32px}
+.capabilities{margin-top:24px}
+.portrait-card{position:absolute;left:918px;top:70px;width:418px}
+.image-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border);background:#e6e2db;color:var(--secondary);font-family:Inter,"Helvetica Neue",Arial,sans-serif;text-align:center}
+.image-placeholder span{font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em}
+.image-placeholder small{font-size:11px;font-weight:500;line-height:16px;letter-spacing:.02em}
+.portrait-crop{position:relative;width:418px;height:394px;overflow:hidden;border-radius:24px}
+.portrait-card figcaption{padding:18px 8px 0;display:flex;flex-direction:column}
+.portrait-card strong{font-size:28.333px;font-weight:700;line-height:34px}
+.portrait-card span{font-size:20px;font-weight:400;line-height:32px;color:#292724}
+
+.selected-work{position:relative;height:1158px;padding:0 64px}
+.section-intro{position:absolute;left:64px;top:8px}
+.section-intro h2{margin-top:20px;font-size:40px;font-weight:700;line-height:52px}
+.project-grid{position:absolute;left:64px;top:150px;width:1312px;height:960px;display:grid;grid-template-columns:780px 508px;grid-template-rows:456px 480px;gap:24px}
+.project-card{position:relative;overflow:hidden;border-radius:22px;background:#222;color:var(--paper)}
+.project-card--east{grid-row:1/3}
+.project-image{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:22px;background:#ded9d0}
+.project-card--acacia .project-image{background:#d7ddd9}
+.project-card--lelian .project-image{background:#e3ddd4}
+.project-overlay{position:absolute;left:0;right:0;bottom:0;height:215px;padding:37px 30px 30px;background:rgba(23,25,22,.8);border-radius:22px}
+.project-card--east .project-overlay{height:300px;padding-top:40px}
+.project-overlay h3{margin-top:18px;font-size:28px;font-weight:700;line-height:38px}
+.project-card--east .project-overlay h3{margin-top:26px;font-size:40px;line-height:52px}
+.project-overlay p{margin-top:6px;font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em;color:var(--border)}
+.project-card--east .project-overlay p{margin-top:52px}
+.project-overlay .project-no{color:var(--border)}
+
+.other-work{position:relative;height:1282px;padding:0 64px}
+.other-work .section-intro{top:140px}
+.small-case-grid{position:absolute;left:64px;top:282px;width:1312px;display:grid;grid-template-columns:repeat(2,652px);grid-auto-rows:390px;gap:60px 8px}
+.small-case{padding:28px 30px 54px;display:flex;flex-direction:column;border:1px solid var(--border);border-radius:20px;background:var(--paper)}
+.small-case--canvas{background:var(--canvas)}
+.small-case--filled{background:var(--border)}
+.small-case h3{margin-top:30px;font-size:28px;font-weight:700;line-height:38px}
+.small-case>p{margin-top:28px;font-size:16px;font-weight:400;line-height:26px;color:var(--secondary)}
+.small-case footer{margin-top:auto;display:flex;justify-content:space-between;font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em}
+
+.about-section{height:594px;padding:80px 64px;background:var(--pine);color:var(--paper);display:grid;grid-template-columns:780px 380px;gap:116px}
+.about-copy h2{margin-top:36px;font-size:40px;font-weight:700;line-height:52px}
+.about-copy>p:last-child{width:760px;margin-top:68px;font-size:20px;font-weight:400;line-height:32px}
+.contact-copy{padding-top:20px}
+.contact-copy>a{display:block;margin-top:34px;font-size:28px;font-weight:700;line-height:38px}
+.contact-copy>p:last-child{margin-top:32px;font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em;color:var(--border)}
+
+.landing-footer{height:315px;padding:80px 60px 0 64px;background:var(--footer);color:var(--border);display:flex;justify-content:space-between;font-family:Inter,"Helvetica Neue",Arial,sans-serif}
+.landing-footer div{display:flex;flex-direction:column;gap:20px}
+.landing-footer strong,.landing-footer span{font-size:14px;font-weight:500;line-height:20px;letter-spacing:.02em}
+.landing-footer nav{display:flex;gap:30px}
+.landing-footer nav a{font-size:12px;font-weight:700;line-height:16px;letter-spacing:.08em}
+
+@media (max-width:700px){
+  body{background:var(--paper)}
+  .landing-page{width:100%}
+  .landing-header{height:64px;padding:0 20px}
+  .landing-header .brand{width:auto;font-size:12px}
+  .landing-header nav{gap:16px}
+  .landing-header nav a{width:auto;font-size:10px}
+  .landing-header nav a:last-child{display:none}
+  .desktop-only{display:none}
+  .landing-hero{height:auto;padding:54px 20px 72px}
+  .landing-hero__copy,.portrait-card{position:static;width:100%}
+  .landing-hero h1{margin-top:64px;font-size:42px;line-height:52px}
+  .hero-body{width:100%;margin-top:28px;font-size:17px;line-height:29px}
+  .capabilities{margin-top:24px;font-size:10px;line-height:15px}
+  .portrait-card{margin-top:48px}
+  .portrait-crop{width:100%;height:330px;border-radius:20px}
+  .portrait-card figcaption{padding:16px 4px 0}
+  .portrait-card strong{font-size:24px;line-height:34px}
+  .portrait-card span{font-size:15px;line-height:25px}
+  .selected-work,.other-work{height:auto;padding:72px 20px}
+  .section-intro,.other-work .section-intro{position:static}
+  .section-intro h2{margin-top:18px;font-size:34px;line-height:44px}
+  .project-grid{position:static;width:100%;height:auto;margin-top:44px;display:grid;grid-template-columns:1fr;grid-template-rows:none;gap:16px}
+  .project-card,.project-card--east{height:440px;grid-row:auto}
+  .project-card--acacia,.project-card--lelian{height:390px}
+  .project-overlay,.project-card--east .project-overlay{height:190px;padding:26px 24px;border-radius:20px}
+  .project-overlay h3,.project-card--east .project-overlay h3{margin-top:14px;font-size:27px;line-height:36px}
+  .project-overlay p,.project-card--east .project-overlay p{margin-top:12px;font-size:9px;line-height:14px}
+  .other-work{padding-top:88px;padding-bottom:88px}
+  .small-case-grid{position:static;width:100%;margin-top:44px;grid-template-columns:1fr;grid-auto-rows:300px;gap:12px}
+  .small-case{padding:25px 24px 32px}
+  .small-case h3{margin-top:24px;font-size:25px;line-height:34px}
+  .small-case>p{margin-top:22px;font-size:15px;line-height:25px}
+  .small-case footer{font-size:9px;line-height:14px}
+  .about-section{height:auto;padding:64px 20px 72px;grid-template-columns:1fr;gap:60px}
+  .about-copy h2{margin-top:28px;font-size:34px;line-height:44px}
+  .about-copy>p:last-child{width:100%;margin-top:40px;font-size:17px;line-height:29px}
+  .contact-copy{padding-top:0}
+  .contact-copy>a{margin-top:24px;font-size:23px;line-height:34px;overflow-wrap:anywhere}
+  .landing-footer{height:230px;padding:54px 20px 0;gap:24px}
+  .landing-footer nav{gap:16px}
+  .landing-footer nav a{font-size:9px}
+}
