@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Lian — Brand Framework Preview</title>
+  <style>
+    :root{
+      --ink:#211911;
+      --muted:#7a6656;
+      --paper:#fbf6ed;
+      --cream:#fffaf2;
+      --line:rgba(70,48,28,.16);
+      --gold:#c28a35;
+      --earth:#b17745;
+      --water:#708b8f;
+      --wood:#768f5d;
+      --fire:#bf684f;
+      --metal:#9b9185;
+      --shadow:0 24px 80px rgba(53,35,18,.13);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(194,138,53,.18), transparent 34%),
+        radial-gradient(circle at 78% 4%, rgba(112,139,143,.16), transparent 32%),
+        linear-gradient(180deg,#fff9ef 0%, #f7efe3 48%, #efe4d5 100%);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+    a{color:inherit;text-decoration:none}
+    .nav{
+      position:sticky;top:0;z-index:10;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:18px 36px;
+      backdrop-filter:blur(18px);
+      background:rgba(251,246,237,.76);
+      border-bottom:1px solid var(--line);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .brand{letter-spacing:.22em;text-transform:uppercase;font-size:13px;font-weight:700}
+    .nav-links{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+    .nav-cta{padding:10px 16px;border:1px solid rgba(33,25,17,.2);border-radius:999px;background:rgba(255,255,255,.45)}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    .hero{min-height:760px;display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;padding:74px 0 42px}
+    .eyebrow{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-size:12px;font-weight:800;margin-bottom:18px}
+    h1{font-size:74px;line-height:.95;letter-spacing:-.06em;margin:0 0 24px;font-weight:500}
+    .sub{font-size:21px;line-height:1.55;color:#5d4a3c;max-width:620px;margin:0 0 32px}
+    .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:15px 22px;border:1px solid rgba(33,25,17,.18);background:#211911;color:#fff;font-size:14px;font-weight:700;box-shadow:0 18px 40px rgba(33,25,17,.18);cursor:pointer}
+    .btn.secondary{background:rgba(255,255,255,.55);color:var(--ink);box-shadow:none}
+    .hero-card{position:relative;min-height:600px;border-radius:42px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:linear-gradient(160deg,#fff8eb,#ead9c3)}
+    .sun{position:absolute;right:-90px;top:-120px;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(194,138,53,.45),rgba(194,138,53,.1) 52%,transparent 70%)}
+    .bead-ring{position:absolute;left:50%;top:48%;width:370px;height:370px;transform:translate(-50%,-50%);border-radius:50%;animation:float 7s ease-in-out infinite}
+    .bead{position:absolute;width:46px;height:46px;border-radius:50%;box-shadow:inset -8px -10px 18px rgba(58,35,14,.22), inset 9px 8px 18px rgba(255,255,255,.58), 0 12px 24px rgba(44,28,14,.15)}
+    .b1{background:#8f5935;left:50%;top:0;transform:translate(-50%,-50%)}
+    .b2{background:#718b74;right:22px;top:55px}.b3{background:#b56b4f;right:-14px;top:170px}.b4{background:#947b63;right:38px;bottom:54px}.b5{background:#c69b5f;left:50%;bottom:-18px;transform:translateX(-50%)}.b6{background:#6f8d91;left:38px;bottom:54px}.b7{background:#a8937b;left:-14px;top:170px}.b8{background:#7a895a;left:22px;top:55px}
+    .string{position:absolute;inset:10px;border:2px solid rgba(89,60,34,.22);border-radius:50%}
+    .hero-note{position:absolute;left:32px;right:32px;bottom:32px;border-radius:28px;padding:24px;background:rgba(255,250,242,.78);backdrop-filter:blur(18px);border:1px solid rgba(70,48,28,.14);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    .hero-note strong{display:block;font-size:14px;margin-bottom:8px}.hero-note span{font-size:13px;color:var(--muted);line-height:1.55}
+    @keyframes float{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-53%) rotate(2deg)}}
+    .section{padding:82px 0;border-top:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:.72fr 1fr;gap:40px;align-items:end;margin-bottom:34px}
+    h2{font-size:48px;line-height:1.04;letter-spacing:-.045em;margin:0;font-weight:500}
+    .lead{font-size:18px;line-height:1.65;color:var(--muted);margin:0;max-width:690px}
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .pillar{position:relative;min-height:300px;padding:28px;border-radius:var(--radius);background:rgba(255,250,242,.68);border:1px solid var(--line);box-shadow:0 12px 50px rgba(53,35,18,.07);overflow:hidden}
+    .pillar:after{content:"";position:absolute;right:-55px;bottom:-65px;width:190px;height:190px;border-radius:50%;background:rgba(194,138,53,.12)}
+    .pillar h3{font-size:30px;margin:0 0 14px;font-weight:500;letter-spacing:-.03em}.pillar p{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--muted);line-height:1.7;font-size:14px}.tag{display:inline-flex;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-weight:800;margin-bottom:62px}
+    .village{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+    .village-visual{border-radius:34px;min-height:430px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(118,143,93,.2),rgba(194,138,53,.18)),linear-gradient(180deg,#fff6e9,#e8d7c1);position:relative;overflow:hidden;box-shadow:var(--shadow)}
+    .house{position:absolute;bottom:70px;left:60px;width:260px;height:150px;background:rgba(255,250,242,.75);border:1px solid rgba(70,48,28,.16);border-radius:18px}.house:before{content:"";position:absolute;left:28px;top:-70px;width:200px;height:200px;background:rgba(160,91,53,.54);transform:rotate(45deg);border-radius:12px}.house:after{content:"small batch workshop";position:absolute;bottom:-38px;left:0;font-family:ui-sans-serif,system-ui;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .path{position:absolute;left:180px;bottom:-30px;width:380px;height:180px;border:1px solid rgba(70,48,28,.16);border-radius:50%;transform:rotate(-18deg)}
+    .village-copy{border-radius:34px;padding:34px;background:rgba(255,250,242,.68);border:1px solid var(--line)}
+    .proof-list{display:grid;gap:14px;margin-top:28px;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.proof{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;padding:16px;border-radius:18px;background:rgba(255,255,255,.45);border:1px solid rgba(70,48,28,.1)}.proof b{font-size:14px}.proof span{display:block;color:var(--muted);font-size:13px;line-height:1.55;margin-top:3px}.num{width:42px;height:42px;border-radius:50%;background:#211911;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
+    .match{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:stretch}.panel{border-radius:34px;padding:30px;background:rgba(255,250,242,.76);border:1px solid var(--line);box-shadow:0 20px 60px rgba(53,35,18,.08)}
+    label{display:block;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:800;margin:20px 0 8px}input,select{width:100%;padding:15px 15px;border-radius:16px;border:1px solid rgba(70,48,28,.18);background:rgba(255,255,255,.62);font-size:15px;color:var(--ink);outline:none}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{padding:14px 12px;border-radius:16px;border:1px solid rgba(70,48,28,.14);background:rgba(255,255,255,.45);font-family:ui-sans-serif,system-ui;font-size:13px;color:#5d4a3c;cursor:pointer}.choice.active{background:#211911;color:#fff;border-color:#211911}.full{width:100%;justify-content:center;margin-top:18px}
+    .result-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.profile-code{font-family:ui-sans-serif,system-ui;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800}.result-title{font-size:42px;line-height:1.04;letter-spacing:-.045em;margin:18px 0 10px}.result-copy{font-family:ui-sans-serif,system-ui;color:var(--muted);line-height:1.7;font-size:15px;max-width:600px}.bars{display:grid;gap:10px;margin-top:26px}.bar{display:grid;grid-template-columns:76px 1fr 42px;gap:12px;align-items:center;font-family:ui-sans-serif,system-ui;font-size:12px;color:#5d4a3c}.track{height:10px;border-radius:999px;background:rgba(70,48,28,.1);overflow:hidden}.fill{height:100%;border-radius:999px;background:var(--earth);width:30%}.receipt-mini{margin-top:24px;padding:18px;border-radius:22px;background:rgba(255,255,255,.48);border:1px solid rgba(70,48,28,.12);display:grid;grid-template-columns:1fr 1fr;gap:16px;font-family:ui-sans-serif,system-ui}.receipt-mini b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}.receipt-mini span{font-size:14px;color:var(--ink)}
+    .states{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.state{min-height:260px;border-radius:26px;padding:22px;border:1px solid var(--line);background:rgba(255,250,242,.68);position:relative;overflow:hidden}.state.active{box-shadow:0 24px 60px rgba(33,25,17,.16);border-color:rgba(33,25,17,.32);transform:translateY(-4px)}.state .orb{width:58px;height:58px;border-radius:50%;margin-bottom:42px;box-shadow:inset -10px -12px 20px rgba(42,24,10,.2),inset 10px 8px 18px rgba(255,255,255,.45)}.state h3{font-size:26px;margin:0 0 6px;font-weight:500}.state small{font-family:ui-sans-serif,system-ui;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:800}.state p{font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.6;color:var(--muted);margin-top:18px}
+    .pdp{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}.product-card{border-radius:38px;min-height:590px;background:linear-gradient(155deg,#fdf4e5,#e5d0b7);border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden}.product-ring{position:absolute;left:50%;top:45%;width:360px;height:360px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(70,48,28,.16)}.pbead{position:absolute;width:44px;height:44px;border-radius:50%;background:#91613d;box-shadow:inset -8px -8px 16px rgba(42,24,10,.24),inset 8px 8px 16px rgba(255,255,255,.5)}.p1{left:50%;top:-20px}.p2{right:24px;top:45px;background:#7e8b5c}.p3{right:-16px;top:170px;background:#bd7256}.p4{right:48px;bottom:30px;background:#6f8d91}.p5{left:50%;bottom:-20px;background:#c29a5d}.p6{left:34px;bottom:46px;background:#a49484}.p7{left:-15px;top:174px;background:#9e7b62}.p8{left:24px;top:45px;background:#7a8b6d}.product-label{position:absolute;left:28px;right:28px;bottom:28px;padding:22px;border-radius:24px;background:rgba(255,250,242,.78);backdrop-filter:blur(18px);border:1px solid rgba(70,48,28,.14);font-family:ui-sans-serif,system-ui}.price{font-size:13px;color:var(--muted);margin-top:8px}.pdp-copy{border-radius:38px;padding:34px;background:rgba(255,250,242,.72);border:1px solid var(--line)}.pdp-copy h2{margin-bottom:14px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:26px 0 16px}.tab{padding:12px;border-radius:15px;border:1px solid rgba(70,48,28,.14);background:rgba(255,255,255,.42);font-family:ui-sans-serif,system-ui;font-size:13px;text-align:center;cursor:pointer}.tab.active{background:#211911;color:#fff}.tab-body{font-family:ui-sans-serif,system-ui;color:var(--muted);line-height:1.7;font-size:15px;min-height:118px;padding:18px;border-radius:20px;background:rgba(255,255,255,.38);border:1px solid rgba(70,48,28,.1)}.buy-row{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:18px}.micro{font-family:ui-sans-serif,system-ui;font-size:12px;color:var(--muted);line-height:1.5}
+    .receipt{border-radius:38px;padding:38px;background:#211911;color:#fff;display:grid;grid-template-columns:.88fr 1.12fr;gap:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}.receipt:after{content:"";position:absolute;right:-140px;top:-140px;width:360px;height:360px;border-radius:50%;background:rgba(194,138,53,.18)}.receipt h2{color:#fff}.receipt .lead{color:rgba(255,255,255,.68)}.receipt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}.receipt-item{padding:18px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-family:ui-sans-serif,system-ui}.receipt-item b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.55);margin-bottom:8px}.receipt-item span{font-size:15px;color:#fff}.footer{padding:44px 0 60px;font-family:ui-sans-serif,system-ui;color:var(--muted);text-align:center;border-top:1px solid var(--line)}
+    @media(max-width:980px){.hero,.section-head,.village,.match,.pdp,.receipt{grid-template-columns:1fr}.hero{min-height:auto}.pillars{grid-template-columns:1fr}.states{grid-template-columns:1fr 1fr}.nav-links{display:none}h1{font-size:54px}h2{font-size:38px}.receipt-grid{grid-template-columns:1fr}}
+    @media(max-width:580px){.wrap{padding:0 16px}.nav{padding:16px}.hero{padding-top:48px}h1{font-size:43px}.hero-card{min-height:500px}.bead-ring{width:290px;height:290px}.states{grid-template-columns:1fr}.choice-grid,.receipt-mini{grid-template-columns:1fr}.section{padding:62px 0}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#top">Le Lian</a>
+    <div class="nav-links">
+      <a href="#village">Small-town proof</a>
+      <a href="#match">Wu Xing match</a>
+      <a href="#pdp">Premium beads</a>
+      <a class="nav-cta" href="#match">Find my element</a>
+    </div>
+  </nav>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Small-town craft · Wu Xing soul · Premium beads</div>
+        <h1>A bracelet from a small town, matched to your energy.</h1>
+        <p class="sub">Le Lian turns three brand truths into one buying journey: real small-town craftsmanship as proof, Wu Xing as the soul, and premium beads as the object worth keeping.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#match">Find my Wu Xing match →</a>
+          <a class="btn secondary" href="#village">Meet the small-town story</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="bracelet visual">
+        <div class="sun"></div>
+        <div class="bead-ring">
+          <div class="string"></div>
+          <span class="bead b1"></span><span class="bead b2"></span><span class="bead b3"></span><span class="bead b4"></span><span class="bead b5"></span><span class="bead b6"></span><span class="bead b7"></span><span class="bead b8"></span>
+        </div>
+        <div class="hero-note">
+          <strong>Framework direction</strong>
+          <span>Small-town story opens trust. Wu Xing creates personal relevance. Premium beads justify the price at the moment of purchase.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pillars">
+      <div class="section-head">
+        <h2>The three brand elements should not compete.</h2>
+        <p class="lead">They should work like a sequence: first prove the object is real, then make it personal, then make the price feel earned.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <span class="tag">Proof</span>
+          <h3>Small-town craftsmanship</h3>
+          <p>The easiest emotional entry point for the customer. It answers where the beads came from, who handled them, and why this is not a mass-market bracelet.</p>
+        </article>
+        <article class="pillar">
+          <span class="tag">Soul</span>
+          <h3>Wu Xing</h3>
+          <p>The proprietary layer. It makes the bracelet feel chosen for her current season, not simply selected by color or trend.</p>
+        </article>
+        <article class="pillar">
+          <span class="tag">Body</span>
+          <h3>Premium beads</h3>
+          <p>The tactile value layer. It belongs close to PDP, checkout, packaging, and care content where rational price validation matters most.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="village">
+      <div class="section-head">
+        <h2>Lead with the small-town story.</h2>
+        <p class="lead">This is the proof layer. It gives customers something concrete to believe before they enter the more spiritual Wu Xing system.</p>
+      </div>
+      <div class="village">
+        <div class="village-visual"><div class="path"></div><div class="house"></div></div>
+        <div class="village-copy">
+          <div class="eyebrow">The small town behind every bracelet</div>
+          <h2>Hand-strung slowly, in small batches.</h2>
+          <p class="lead">Instead of saying “premium” first, show the path: beads are selected, paired, strung, checked, and packed by people in a real workshop.</p>
+          <div class="proof-list">
+            <div class="proof"><div class="num">01</div><div><b>Batch identity</b><span>Every bracelet receives a small-town batch number, making origin visible.</span></div></div>
+            <div class="proof"><div class="num">02</div><div><b>Maker touch</b><span>The hand-strung process becomes a luxury proof, not just production detail.</span></div></div>
+            <div class="proof"><div class="num">03</div><div><b>Material trace</b><span>Where the beads came from becomes the reason the price feels justified.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="match">
+      <div class="section-head">
+        <h2>Then let Wu Xing personalize the journey.</h2>
+        <p class="lead">The customer should not only learn about five elements. She should receive a profile that follows her through the whole site.</p>
+      </div>
+      <div class="match">
+        <div class="panel">
+          <div class="eyebrow">Energy Matching Module</div>
+          <h2>Find your current match.</h2>
+          <label for="birth">Birth date</label>
+          <input id="birth" type="date" value="1996-08-18" />
+          <label>What are you calling in?</label>
+          <div class="choice-grid" id="choices">
+            <button class="choice active" data-need="grounding">Grounding</button>
+            <button class="choice" data-need="clarity">Clarity</button>
+            <button class="choice" data-need="protection">Protection</button>
+            <button class="choice" data-need="momentum">Momentum</button>
+            <button class="choice" data-need="softness">Softness</button>
+            <button class="choice" data-need="courage">Courage</button>
+          </div>
+          <button class="btn full" id="calculate">Generate my profile →</button>
+        </div>
+        <div class="panel">
+          <div class="result-top">
+            <div>
+              <div class="profile-code" id="profileCode">LLN-0818-EARTH</div>
+              <div class="result-title" id="resultTitle">Fire-born, Earth-called.</div>
+            </div>
+          </div>
+          <p class="result-copy" id="resultCopy">Your native pattern carries Fire, but your current season is asking for Earth: steadiness, protection, and a softer way to return to yourself.</p>
+          <div class="bars" id="bars"></div>
+          <div class="receipt-mini">
+            <div><b>Recommended state</b><span id="recState">Shield — Grounding Edition</span></div>
+            <div><b>Bead formula</b><span id="beads">Jasper · Agate · Smoky Quartz</span></div>
+            <div><b>Workshop batch</b><span id="batch">LLN-EARTH-0426</span></div>
+            <div><b>Ritual</b><span id="ritual">Touch once before saying yes.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="states">
+      <div class="section-head">
+        <h2>Turn five elements into product states.</h2>
+        <p class="lead">The cleanest long-term system is five elements, five states, five product families. This keeps Wu Xing from feeling decorative.</p>
+      </div>
+      <div class="states" id="statesGrid">
+        <article class="state" data-element="Earth"><div class="orb" style="background:var(--earth)"></div><small>Earth</small><h3>Shield</h3><p>For grounding, protection, and returning to the body.</p></article>
+        <article class="state" data-element="Water"><div class="orb" style="background:var(--water)"></div><small>Water</small><h3>Zen</h3><p>For softness, emotional flow, and quiet clarity.</p></article>
+        <article class="state" data-element="Wood"><div class="orb" style="background:var(--wood)"></div><small>Wood</small><h3>Flow</h3><p>For growth, becoming, and moving through change.</p></article>
+        <article class="state" data-element="Fire"><div class="orb" style="background:var(--fire)"></div><small>Fire</small><h3>Radiance</h3><p>For courage, visibility, and warm expression.</p></article>
+        <article class="state" data-element="Metal"><div class="orb" style="background:var(--metal)"></div><small>Metal</small><h3>Focus</h3><p>For boundaries, precision, and clean decision-making.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="pdp">
+      <div class="section-head">
+        <h2>PDP becomes the place where all three elements converge.</h2>
+        <p class="lead">At purchase, the customer needs the full proof stack: why this bracelet is matched to her, what the beads are, and where it came from.</p>
+      </div>
+      <div class="pdp">
+        <div class="product-card">
+          <div class="product-ring"><span class="pbead p1"></span><span class="pbead p2"></span><span class="pbead p3"></span><span class="pbead p4"></span><span class="pbead p5"></span><span class="pbead p6"></span><span class="pbead p7"></span><span class="pbead p8"></span></div>
+          <div class="product-label"><b id="productName">Shield — Grounding Edition</b><div class="price">Premium beads · small-town batch · Wu Xing matched</div></div>
+        </div>
+        <div class="pdp-copy">
+          <div class="eyebrow">Matched PDP</div>
+          <h2 id="pdpTitle">Your Earth match, made tangible.</h2>
+          <p class="lead" id="pdpLead">This bracelet is recommended because your current profile calls for grounding. The beads are selected for weight, texture, and steadiness.</p>
+          <div class="tabs">
+            <button class="tab active" data-tab="matchTab">Your Match</button>
+            <button class="tab" data-tab="beadsTab">The Beads</button>
+            <button class="tab" data-tab="villageTab">The Village</button>
+          </div>
+          <div class="tab-body" id="tabBody">Wu Xing explains why this bracelet belongs to your current season. It is not just a color preference; it is a five-element reading translated into an object.</div>
+          <div class="buy-row">
+            <a href="#receipt" class="btn">Add matched bracelet</a>
+            <div class="micro">Includes Energy Receipt, batch identity, and 90-day reattunement reminder.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="receipt">
+      <div class="receipt">
+        <div>
+          <div class="eyebrow">Post-purchase ownership proof</div>
+          <h2>Energy Receipt</h2>
+          <p class="lead">The receipt makes the purchase feel personal, traceable, and worth keeping. It turns Le Lian into a relationship, not a one-time accessory.</p>
+        </div>
+        <div class="receipt-grid">
+          <div class="receipt-item"><b>Wu Xing profile</b><span id="rProfile">Fire-born, Earth-called</span></div>
+          <div class="receipt-item"><b>Matched bracelet</b><span id="rBracelet">Shield — Grounding Edition</span></div>
+          <div class="receipt-item"><b>Bead formula</b><span id="rBeads">Jasper · Agate · Smoky Quartz</span></div>
+          <div class="receipt-item"><b>Small-town batch</b><span id="rBatch">LLN-EARTH-0426</span></div>
+          <div class="receipt-item"><b>Ritual</b><span id="rRitual">Touch once before saying yes.</span></div>
+          <div class="receipt-item"><b>Reattunement</b><span>Return in 90 days</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Le Lian framework preview · small-town proof, Wu Xing soul, premium beads body</footer>
+
+<script>
+const elements = ["Wood","Fire","Earth","Metal","Water"];
+const color = {Wood:"var(--wood)",Fire:"var(--fire)",Earth:"var(--earth)",Metal:"var(--metal)",Water:"var(--water)"};
+const currentNeedMap = {
+  grounding:{element:"Earth",state:"Shield",edition:"Grounding Edition",beads:"Jasper · Agate · Smoky Quartz",ritual:"Touch once before saying yes.",copy:"steadiness, protection, and a softer way to return to yourself."},
+  clarity:{element:"Metal",state:"Focus",edition:"Clarity Edition",beads:"White Agate · Hematite · River Stone",ritual:"Wear when making a clean decision.",copy:"boundaries, discernment, and a clearer line between yes and no."},
+  protection:{element:"Earth",state:"Shield",edition:"Protection Edition",beads:"Black Onyx · Jasper · Tiger Eye",ritual:"Put it on before leaving home.",copy:"grounded protection and a quiet sense of being held."},
+  momentum:{element:"Wood",state:"Flow",edition:"Growth Edition",beads:"Green Jade · Moss Agate · Citrine",ritual:"Turn one bead before beginning.",copy:"growth, movement, and a gentle return to forward motion."},
+  softness:{element:"Water",state:"Zen",edition:"Softness Edition",beads:"Moonstone · Aquamarine · River Stone",ritual:"Wear when you want to soften the day.",copy:"emotional flow, receptivity, and rest without disappearing."},
+  courage:{element:"Fire",state:"Radiance",edition:"Courage Edition",beads:"Carnelian · Sunstone · Red Agate",ritual:"Touch once before being seen.",copy:"warm courage, visibility, and a stronger inner spark."}
+};
+const nativeCopy = {
+  Wood:"Wood-born", Fire:"Fire-born", Earth:"Earth-born", Metal:"Metal-born", Water:"Water-born"
+};
+const profileLine = {
+  Wood:"You carry the energy of becoming.",
+  Fire:"You carry warmth, expression, and a visible spark.",
+  Earth:"You carry steadiness, care, and a deep need for homecoming.",
+  Metal:"You carry clarity, taste, and clean boundaries.",
+  Water:"You carry intuition, softness, and emotional depth."
+};
+let activeNeed = "grounding";
+document.querySelectorAll('.choice').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.choice').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeNeed = btn.dataset.need;
+    calculate();
+  })
+});
+document.getElementById('birth').addEventListener('change', calculate);
+document.getElementById('calculate').addEventListener('click', calculate);
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const item = currentNeedMap[activeNeed];
+    const text = {
+      matchTab:`Wu Xing explains why ${item.state} belongs to your current season. It is not just a color preference; it is a five-element reading translated into an object.`,
+      beadsTab:`Premium beads are selected for weight, tone, texture, and energetic pairing. The material story supports the price because the bracelet feels substantial and intentional.`,
+      villageTab:`The small-town batch makes origin visible. Each bracelet can carry a batch ID, maker note, and quality check so the customer knows where the object came from.`
+    };
+    document.getElementById('tabBody').textContent = text[btn.dataset.tab];
+  })
+})
+function nativeFromBirth(value){
+  const date = value ? new Date(value) : new Date('1996-08-18');
+  const m = date.getUTCMonth()+1, d = date.getUTCDate(), y = date.getUTCFullYear();
+  const season = m>=3&&m<=5 ? "Wood" : m>=6&&m<=8 ? "Fire" : m>=9&&m<=10 ? "Metal" : (m===11||m===12||m===1) ? "Water" : "Earth";
+  const digits = String(y)+String(m).padStart(2,'0')+String(d).padStart(2,'0');
+  const seed = digits.split('').reduce((sum,n,i)=>sum + Number(n)*(i+3),17);
+  return {season, seed, month:m, day:d, year:y};
+}
+function calculate(){
+  const birth = document.getElementById('birth').value;
+  const n = nativeFromBirth(birth);
+  const item = currentNeedMap[activeNeed];
+  let weights = {Wood:18,Fire:18,Earth:18,Metal:18,Water:18};
+  weights[n.season] += 10;
+  weights[item.element] += 14;
+  elements.forEach((el,i)=>{ weights[el] += (n.seed + (i+5)*n.day + n.month*7) % 9; });
+  const total = Object.values(weights).reduce((a,b)=>a+b,0);
+  let vals = elements.map(el=>({el, val:Math.round(weights[el]/total*100)}));
+  let diff = 100 - vals.reduce((a,b)=>a+b.val,0);
+  vals[2].val += diff;
+  vals.sort((a,b)=>b.val-a.val);
+  const nativeEl = n.season;
+  const currentEl = item.element;
+  const profile = `${nativeCopy[nativeEl]}, ${currentEl}-called.`;
+  const code = `LLN-${String(n.month).padStart(2,'0')}${String(n.day).padStart(2,'0')}-${currentEl.toUpperCase()}`;
+  const batch = `LLN-${currentEl.toUpperCase()}-0426`;
+  document.getElementById('profileCode').textContent = code;
+  document.getElementById('resultTitle').textContent = profile;
+  document.getElementById('resultCopy').textContent = `${profileLine[nativeEl]} Your current season is asking for ${currentEl}: ${item.copy}`;
+  document.getElementById('recState').textContent = `${item.state} — ${item.edition}`;
+  document.getElementById('beads').textContent = item.beads;
+  document.getElementById('batch').textContent = batch;
+  document.getElementById('ritual').textContent = item.ritual;
+  document.getElementById('productName').textContent = `${item.state} — ${item.edition}`;
+  document.getElementById('pdpTitle').textContent = `Your ${currentEl} match, made tangible.`;
+  document.getElementById('pdpLead').textContent = `This bracelet is recommended because your current profile calls for ${currentEl}. The beads are selected for weight, texture, and the feeling of ${item.copy}`;
+  document.getElementById('rProfile').textContent = profile.replace('.', '');
+  document.getElementById('rBracelet').textContent = `${item.state} — ${item.edition}`;
+  document.getElementById('rBeads').textContent = item.beads;
+  document.getElementById('rBatch').textContent = batch;
+  document.getElementById('rRitual').textContent = item.ritual;
+  const bars = document.getElementById('bars');
+  bars.innerHTML = vals.map(v=>`<div class="bar"><span>${v.el}</span><div class="track"><div class="fill" style="width:${v.val}%;background:${color[v.el]}"></div></div><span>${v.val}%</span></div>`).join('');
+  document.querySelectorAll('.state').forEach(s=>s.classList.toggle('active', s.dataset.element===currentEl));
+}
+calculate();
+</script>
+</body>
+</html>

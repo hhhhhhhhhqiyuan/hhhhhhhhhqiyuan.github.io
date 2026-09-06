@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Lian · Brand Framework Preview v3</title>
+  <style>
+    :root {
+      --ink: #151b26;
+      --ink-soft: rgba(21, 27, 38, 0.66);
+      --paper: #fffef9;
+      --cream: #f7f3ea;
+      --sage: #8a9a87;
+      --sage-soft: #b5c1ad;
+      --earth: #b5a78a;
+      --water: #8ca6b5;
+      --wood: #8a9a87;
+      --fire: #d4a89a;
+      --metal: #c8c2b5;
+      --clay: #4a4339;
+      --line: rgba(21, 27, 38, 0.12);
+      --shadow: 0 34px 90px rgba(21, 27, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    p { color: var(--ink-soft); line-height: 1.75; }
+    em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    button, input { font: inherit; }
+
+    .nav {
+      position: fixed;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 76px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--paper);
+      background: linear-gradient(to bottom, rgba(21,27,38,.46), rgba(21,27,38,0));
+      pointer-events: none;
+    }
+    .nav > * { pointer-events: auto; }
+    .brand { letter-spacing: .42em; font-size: 12px; }
+    .navlinks { display: flex; gap: 28px; font-size: 12px; letter-spacing: .14em; opacity: .88; }
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: end;
+      padding: 120px 8vw 96px;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(21,27,38,.76), rgba(21,27,38,.34), rgba(21,27,38,.08)),
+        radial-gradient(circle at 74% 36%, rgba(181,193,173,.34), transparent 28%),
+        radial-gradient(circle at 18% 82%, rgba(212,168,154,.28), transparent 32%),
+        url('https://lelianbracelets.com/cdn/shop/files/0703_9304.jpg') center / cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(21,27,38,.48), transparent 44%);
+      z-index: -1;
+    }
+    .kicker,
+    .eyebrow {
+      display: block;
+      letter-spacing: .32em;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .kicker { color: rgba(255,254,249,.78); }
+    .eyebrow { color: var(--sage); margin-bottom: 18px; }
+    .hero h1 {
+      max-width: 930px;
+      margin: 28px 0 24px;
+      color: var(--paper);
+      font-size: clamp(52px, 7.8vw, 104px);
+      line-height: .94;
+      letter-spacing: -.035em;
+      font-weight: 500;
+    }
+    .hero em { color: #c8d3c2; }
+    .hero p {
+      max-width: 590px;
+      color: rgba(255,254,249,.78);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+    .actions { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 34px; align-items: center; }
+    .btn {
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 15px 26px;
+      font-size: 13px;
+      letter-spacing: .12em;
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-light { background: var(--paper); color: var(--ink); }
+    .btn-dark { background: var(--ink); color: var(--paper); }
+    .btn-outline { border: 1px solid rgba(21,27,38,.18); color: var(--ink); background: transparent; }
+    .btn-soft { background: rgba(255,254,249,.12); color: var(--paper); border: 1px solid rgba(255,254,249,.2); }
+
+    .reassurance {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+      color: rgba(255,254,249,.82);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .reassurance span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .reassurance span + span::before {
+      content: "·";
+      opacity: .6;
+      margin-right: 8px;
+    }
+
+    section { padding: 104px 8vw; }
+    .section-head { max-width: 820px; margin-bottom: 52px; }
+    h2 { margin: 0; font-size: clamp(36px, 5vw, 62px); line-height: .98; font-weight: 500; letter-spacing: -.045em; }
+    h3 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.02em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(21,27,38,.12);
+      font-size: 11px;
+      letter-spacing: .16em;
+      color: rgba(21,27,38,.65);
+      text-transform: uppercase;
+      background: rgba(255,254,249,.52);
+    }
+
+    .proof {
+      background: linear-gradient(180deg, var(--paper), var(--cream));
+    }
+    .proof-card {
+      min-height: 390px;
+      border-radius: 30px;
+      padding: 30px;
+      border: 1px solid rgba(21,27,38,.1);
+      background: rgba(255,255,255,.62);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 22px 60px rgba(21,27,38,.05);
+    }
+    .proof-card.large {
+      min-height: 540px;
+      color: var(--paper);
+      background:
+        linear-gradient(to top, rgba(21,27,38,.76), rgba(21,27,38,.16)),
+        url('https://lelianbracelets.com/cdn/shop/files/IN_TEMPLE2s.jpg') center/cover;
+    }
+    .proof-card.large p { color: rgba(255,254,249,.72); }
+    .proof-card.large .pill { color: var(--paper); border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.08); }
+    .proof-number { font-family: Georgia, serif; font-size: 64px; letter-spacing: -.05em; color: rgba(21,27,38,.22); }
+
+    .quiz-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    label { display: block; margin-bottom: 10px; font-size: 12px; letter-spacing: .18em; color: rgba(21,27,38,.68); text-transform: uppercase; }
+    input[type="date"] { width: 100%; padding: 15px 0; border: 0; border-bottom: 1px solid rgba(21,27,38,.18); background: transparent; color: var(--ink); font-size: 16px; outline: 0; }
+    .moods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 26px 0; }
+    .mood { border: 1px solid rgba(21,27,38,.16); background: transparent; border-radius: 999px; padding: 13px 12px; color: rgba(21,27,38,.72); cursor: pointer; letter-spacing: .04em; }
+    .mood.active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+
+    .orb-wrap { min-height: 456px; display: flex; align-items: center; justify-content: center; }
+    .orb {
+      width: min(320px, 72vw);
+      height: min(320px, 72vw);
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.82), transparent 17%),
+        radial-gradient(circle at 60% 62%, rgba(138,154,135,.55), transparent 36%),
+        radial-gradient(circle at 38% 70%, rgba(140,166,181,.38), transparent 34%),
+        linear-gradient(135deg, #f6efe7, #b5c1ad 48%, #8ca6b5);
+      box-shadow: 0 40px 110px rgba(138,154,135,.45);
+      animation: breathe 4.8s ease-in-out infinite;
+    }
+    .orb::after { content: ""; position: absolute; inset: 16%; border-radius: 50%; border: 1px solid rgba(255,255,255,.45); }
+    @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+    .result { width: 100%; display: none; }
+    .bar-row { margin: 18px 0; }
+    .bar-meta { display: flex; justify-content: space-between; font-size: 13px; color: rgba(21,27,38,.72); margin-bottom: 7px; }
+    .bar { height: 3px; background: rgba(21,27,38,.1); border-radius: 20px; overflow: hidden; }
+    .fill { height: 100%; width: 0%; transition: width 1s ease; }
+    .receipt-mini { margin-top: 28px; border: 1px solid rgba(21,27,38,.1); background: rgba(255,254,249,.8); border-radius: 22px; padding: 22px; }
+    .receipt-mini strong { display: block; margin-top: 6px; font-size: 23px; font-weight: 500; }
+
+    .worldview { background: var(--clay); color: var(--paper); }
+    .worldview p { color: rgba(255,254,249,.68); }
+    .worldview .eyebrow { color: var(--sage-soft); }
+    .element-strip { display: grid; grid-template-columns: repeat(5, 1fr); min-height: 430px; border-radius: 34px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); margin-top: 46px; }
+    .element { padding: 28px; display: flex; flex-direction: column; justify-content: end; position: relative; color: var(--ink); }
+    .element::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(21,27,38,.2), transparent); opacity: .5; }
+    .element > * { position: relative; }
+    .element small { letter-spacing: .32em; font-size: 10px; opacity: .66; text-transform: uppercase; }
+    .element b { margin-top: 12px; font-size: 25px; font-weight: 500; }
+    .element p { color: rgba(21,27,38,.66); }
+
+    .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    .state-card {
+      min-height: 312px;
+      padding: 26px;
+      border-radius: 26px;
+      background: #fff;
+      border: 1px solid rgba(21,27,38,.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      cursor: pointer;
+    }
+    .state-card.active { border-color: rgba(138,154,135,.72); box-shadow: 0 28px 70px rgba(138,154,135,.22); transform: translateY(-4px); }
+    .state-icon { width: 58px; height: 58px; border-radius: 50%; background: rgba(138,154,135,.15); display: grid; place-items: center; font-family: Georgia, serif; font-size: 28px; }
+
+    .pdp { background: #fff; }
+    .product-stage {
+      min-height: 650px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.86), transparent 25%),
+        linear-gradient(135deg, rgba(181,193,173,.4), rgba(244,239,231,.7), rgba(140,166,181,.28));
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .product-stage::before,
+    .product-stage::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: .36;
+    }
+    .product-stage::before { background: var(--sage-soft); top: 12%; left: 10%; }
+    .product-stage::after { background: var(--fire); right: 8%; bottom: 12%; }
+    .bracelet {
+      position: relative;
+      z-index: 1;
+      width: min(430px, 78vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 28px dotted rgba(74,67,57,.42);
+      filter: drop-shadow(0 36px 55px rgba(21,27,38,.16));
+      animation: spin 28s linear infinite;
+    }
+    .bracelet::after { content: ""; position: absolute; inset: 28%; border-radius: 50%; border: 1px solid rgba(21,27,38,.09); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .product-panel { padding: 20px 0; }
+    .price { font-size: 30px; margin: 16px 0; }
+    .stack { display: grid; gap: 14px; margin: 28px 0; }
+    .stack-item { padding: 18px; border: 1px solid rgba(21,27,38,.1); border-radius: 18px; background: rgba(255,254,249,.64); }
+
+    .beads { background: linear-gradient(180deg, var(--paper), #f2efe6); }
+    .bead-card {
+      min-height: 380px;
+      border-radius: 28px;
+      padding: 28px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(21,27,38,.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 22px 60px rgba(21,27,38,.045);
+    }
+    .bead-orbit {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-content: start;
+      max-width: 250px;
+    }
+    .bead {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--tone, var(--sage));
+      box-shadow: inset 8px 8px 16px rgba(255,255,255,.32), inset -8px -8px 16px rgba(21,27,38,.16);
+    }
+
+    .village {
+      background: var(--clay);
+      color: var(--paper);
+    }
+    .village p { color: rgba(255,254,249,.68); }
+    .village .eyebrow { color: var(--sage-soft); }
+    .story-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .story { min-height: 380px; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; justify-content: end; background: linear-gradient(to top, rgba(21,27,38,.76), rgba(21,27,38,.14)), var(--img) center/cover; color: var(--paper); }
+    .story p { color: rgba(255,254,249,.7); }
+    .story .pill { color: var(--paper); border-color: rgba(255,255,255,.25); background: rgba(255,255,255,.08); }
+
+    .receipt-section { background: #fff; }
+    .receipt-card {
+      max-width: 920px;
+      margin: 0 auto;
+      border-radius: 34px;
+      border: 1px solid rgba(21,27,38,.12);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(181,193,173,.34), transparent 28%),
+        radial-gradient(circle at 12% 84%, rgba(212,168,154,.22), transparent 30%),
+        var(--paper);
+      padding: clamp(28px, 5vw, 54px);
+      box-shadow: var(--shadow);
+    }
+    .receipt-top { display: flex; justify-content: space-between; gap: 20px; align-items: start; border-bottom: 1px solid rgba(21,27,38,.12); padding-bottom: 24px; margin-bottom: 24px; }
+    .receipt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .receipt-line { border: 1px solid rgba(21,27,38,.1); border-radius: 18px; padding: 18px; background: rgba(255,255,255,.54); }
+    .receipt-line span { display:block; font-size: 11px; letter-spacing: .2em; color: var(--sage); text-transform: uppercase; margin-bottom: 8px; }
+    .receipt-line b { font-size: 18px; font-weight: 500; }
+
+    .reattune { padding-top: 0; }
+    .wide-cta {
+      min-height: 440px;
+      border-radius: 34px;
+      display: flex;
+      align-items: end;
+      padding: 46px;
+      color: var(--paper);
+      background:
+        linear-gradient(to top, rgba(21,27,38,.78), rgba(21,27,38,.18)),
+        url('https://lelianbracelets.com/cdn/shop/files/14.jpg') center/cover;
+      overflow: hidden;
+    }
+    .wide-cta p { color: rgba(255,254,249,.72); max-width: 560px; }
+
+    .footer { padding: 48px 8vw; border-top: 1px solid rgba(21,27,38,.1); display: flex; justify-content: space-between; gap: 20px; color: rgba(21,27,38,.6); font-size: 12px; letter-spacing: .12em; }
+    .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(140%); z-index: 50; background: var(--ink); color: var(--paper); padding: 14px 18px; border-radius: 999px; font-size: 13px; letter-spacing: .08em; box-shadow: 0 20px 50px rgba(21,27,38,.26); transition: transform .35s ease; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 1080px) {
+      .grid-2, .story-row { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-5, .state-grid { grid-template-columns: 1fr 1fr; }
+      .element-strip { grid-template-columns: 1fr; }
+      .navlinks { display: none; }
+      section { padding: 78px 6vw; }
+      .hero { padding-left: 6vw; padding-right: 6vw; }
+    }
+    @media (max-width: 640px) {
+      .reassurance {
+        gap: 8px 14px;
+        font-size: 11px;
+        letter-spacing: .12em;
+      }
+      .reassurance span + span::before {
+        margin-right: 6px;
+      }
+      .grid-5, .state-grid, .moods, .receipt-grid { grid-template-columns: 1fr; }
+      .receipt-top, .footer { flex-direction: column; }
+      .wide-cta { padding: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#top">LE LIAN</a>
+    <div class="navlinks">
+      <a href="#proof">PROOF</a>
+      <a href="#match">MATCH</a>
+      <a href="#states">STATES</a>
+      <a href="#pdp">SHOP</a>
+      <a href="#receipt">RECEIPT</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <span class="kicker">── Small-town · Crafted · Wu Xing · Matched</span>
+      <h1>A bracelet from a <em>small town</em>, matched to your energy.</h1>
+      <p>这一版沿用你喜欢的高级、安静、editorial 视觉，把 Le Lian 的三条品牌线重新编排：small-town craftsmanship 是价格与信任的 proof，Wu Xing 是 personalization 的 soul，premium beads 是可以被触摸的 body。</p>
+      <div class="actions">
+        <a class="btn btn-light" href="#match">Find Your Match</a>
+        <a class="btn btn-soft" href="#proof">Meet The Proof</a>
+      </div>
+      <div class="reassurance" aria-label="Store reassurance">
+        <span>Free US shipping</span>
+        <span>30-day returns</span>
+        <span>Natural crystal, ethically sourced</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="proof" id="proof">
+    <div class="section-head">
+      <span class="eyebrow">── 01 · The Proof</span>
+      <h2>Start with the place, not the product.</h2>
+      <p>目标用户先被 small-town story 打开信任：where the beads come from, who strings them, why small-batch work costs more. 这里不急着卖玄学，而是先证明“它不是普通串珠”。</p>
+    </div>
+    <div class="grid-3">
+      <div class="proof-card large">
+        <div><span class="pill">Small-town craftsmanship</span></div>
+        <div>
+          <h3>Hand-strung in small batches.</h3>
+          <p>每条 bracelet 先被放回一个真实的制作语境：慢、手工、选珠、串线、质检、签收。这个模块负责解释价格。</p>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-number">01</div>
+        <div>
+          <span class="pill">Where</span>
+          <h3 style="margin-top:16px">From a real workshop.</h3>
+          <p>强调产地、批次和手工节奏，而不是只说“premium”。</p>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-number">02</div>
+        <div>
+          <span class="pill">Why</span>
+          <h3 style="margin-top:16px">The price has evidence.</h3>
+          <p>Small-town 是 proof：它把高价变成可理解的 sourcing、time、labor 和 provenance。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="match">
+    <div class="section-head">
+      <span class="eyebrow">── 02 · Wu Xing Match</span>
+      <h2>Then let Wu Xing make the object feel personal.</h2>
+      <p>这一段不是传统“你是什么五行”的硬科普，而是生成一个会贯穿整站的 Le Lian Energy Profile：native element、current need、matched state、bead formula 和 receipt code。</p>
+    </div>
+    <div class="grid-2">
+      <div class="quiz-card">
+        <label for="birth">Date of Birth</label>
+        <input id="birth" type="date" value="1996-08-18" />
+        <div style="height:26px"></div>
+        <label>What are you calling in right now?</label>
+        <div class="moods" id="moods">
+          <button class="mood" data-mood="calm">Soft Clarity</button>
+          <button class="mood active" data-mood="anxious">Grounding</button>
+          <button class="mood" data-mood="creative">Momentum</button>
+          <button class="mood" data-mood="tired">Radiance</button>
+        </div>
+        <button class="btn btn-dark" id="reveal">Reveal My Profile →</button>
+        <div class="receipt-mini" id="receiptBox" style="display:none">
+          <span class="pill" id="profileCode">LLN-000000</span>
+          <strong id="receiptTitle">Your matched bracelet is loading.</strong>
+          <p id="receiptText">Your Wu Xing result will now update states, PDP, bead formula, batch ID, and Energy Receipt.</p>
+        </div>
+      </div>
+      <div class="orb-wrap">
+        <div class="orb" id="orb"></div>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="worldview" id="wuxing">
+    <div class="section-head">
+      <span class="eyebrow">── 03 · The Soul</span>
+      <h2>Wu Xing is not the claim. It is the way Le Lian listens.</h2>
+      <p>这里把 Wu Xing 从“卖点”升级成品牌世界观：At Le Lian, Wu Xing is how we read what your body, mood, and season are asking for. 这样既有东方哲学的深度，也不会显得像 gimmick。</p>
+    </div>
+    <div class="element-strip">
+      <div class="element" style="background:var(--earth)"><small>Earth</small><b>Shield</b><p>For returning, grounding, and feeling held.</p></div>
+      <div class="element" style="background:var(--water)"><small>Water</small><b>Zen</b><p>For softening, flow, and emotional clarity.</p></div>
+      <div class="element" style="background:var(--wood)"><small>Wood</small><b>Flow</b><p>For becoming, growth, and new beginnings.</p></div>
+      <div class="element" style="background:var(--fire)"><small>Fire</small><b>Radiance</b><p>For warmth, visibility, and being seen.</p></div>
+      <div class="element" style="background:var(--metal)"><small>Metal</small><b>Focus</b><p>For discernment, boundaries, and clean attention.</p></div>
+    </div>
+  </section>
+
+  <section id="states">
+    <div class="section-head">
+      <span class="eyebrow">── 04 · Matched States</span>
+      <h2>The profile becomes a state before it becomes a product.</h2>
+      <p>五行不要只停留在解释页。每个元素都对应一个 state，用户做完测试后，匹配到的卡片会被高亮，并把她带到对应 PDP。</p>
+    </div>
+    <div class="state-grid" id="stateGrid">
+      <a class="state-card" data-state="Shield" href="#pdp"><div><div class="state-icon">土</div></div><div><span class="pill">Earth</span><h3 style="margin-top:16px">Shield</h3><p>Grounding, steadiness, protection.</p></div></a>
+      <a class="state-card" data-state="Zen" href="#pdp"><div><div class="state-icon">水</div></div><div><span class="pill">Water</span><h3 style="margin-top:16px">Zen</h3><p>Flow, quiet, emotional clarity.</p></div></a>
+      <a class="state-card" data-state="Flow" href="#pdp"><div><div class="state-icon">木</div></div><div><span class="pill">Wood</span><h3 style="margin-top:16px">Flow</h3><p>Growth, movement, fresh starts.</p></div></a>
+      <a class="state-card" data-state="Radiance" href="#pdp"><div><div class="state-icon">火</div></div><div><span class="pill">Fire</span><h3 style="margin-top:16px">Radiance</h3><p>Visibility, warmth, confidence.</p></div></a>
+      <a class="state-card" data-state="Focus" href="#pdp"><div><div class="state-icon">金</div></div><div><span class="pill">Metal</span><h3 style="margin-top:16px">Focus</h3><p>Boundaries, discernment, refinement.</p></div></a>
+    </div>
+  </section>
+
+  <section class="pdp" id="pdp">
+    <div class="grid-2">
+      <div class="product-stage"><div class="bracelet"></div></div>
+      <div class="product-panel">
+        <span class="eyebrow">── 05 · Personalized PDP</span>
+        <h2 id="pdpTitle">Le Lian Bracelet · Grounding Edition</h2>
+        <div class="price">$99</div>
+        <p id="pdpPromise">For steadiness, body-trust, and returning to the breath.</p>
+        <div class="stack">
+          <div class="stack-item"><span class="pill">Wu Xing Match</span><h3 id="dominantLabel" style="margin-top:12px">Earth · Shield</h3><p id="nativeCopy">Your current energy asks for grounding.</p></div>
+          <div class="stack-item"><span class="pill">Premium Beads</span><h3 id="beadFormula" style="margin-top:12px">Jasper · Agate · Smoky Quartz</h3><p>Beads are selected for tone, weight, texture, and energetic pairing — not color alone.</p></div>
+          <div class="stack-item"><span class="pill">Small-town Batch</span><h3 id="batchId" style="margin-top:12px">LLN-EARTH-0426</h3><p>Batch provenance keeps the craft visible at the moment of purchase.</p></div>
+        </div>
+        <button class="btn btn-dark" id="addCart">Add Matched Bracelet →</button>
+        <a class="btn btn-outline" href="#receipt" style="margin-left:10px">View Energy Receipt</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="beads" id="beads">
+    <div class="section-head">
+      <span class="eyebrow">── 06 · The Body</span>
+      <h2>Premium beads become the physical body of the match.</h2>
+      <p>Premium beads 不作为最前面的主 claim，而是在转化前解释产品的可触摸价值：重量、色泽、纹理、手选、批次差异，以及为什么这条 bracelet 值得被长期佩戴。</p>
+    </div>
+    <div class="grid-3">
+      <div class="bead-card">
+        <div class="bead-orbit" id="beadOrbitA"></div>
+        <div><span class="pill">Tone</span><h3 style="margin-top:16px">Selected by feeling, not just color.</h3><p>珠子和五行关系绑定：Earth 不是棕色，Earth 是稳定感、重量和触感。</p></div>
+      </div>
+      <div class="bead-card">
+        <div class="bead-orbit" id="beadOrbitB"></div>
+        <div><span class="pill">Texture</span><h3 style="margin-top:16px">Small variations are part of the value.</h3><p>天然差异不要被隐藏，要被讲成 premium object 的证据。</p></div>
+      </div>
+      <div class="bead-card">
+        <div class="bead-orbit" id="beadOrbitC"></div>
+        <div><span class="pill">Weight</span><h3 style="margin-top:16px">A bracelet you can feel on the wrist.</h3><p>把高价从“材料贵”变成“戴上之后感受得到”。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="village" id="village">
+    <div class="section-head">
+      <span class="eyebrow">── 07 · The Village</span>
+      <h2>The small-town story is not decoration. It is proof.</h2>
+      <p>这个模块可以比普通 “Our Story” 更具体：谁做、哪里做、哪一批、如何挑选、为什么无法无限量生产。它负责把用户从“喜欢”推到“相信”。</p>
+    </div>
+    <div class="story-row">
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/IN_TEMPLE2s.jpg')"><span class="pill">Origin</span><h3 style="margin-top:18px">A real place behind the object.</h3><p>Small-town opening，先让用户感到真实。</p></div>
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/our_story.png')"><span class="pill">Hands</span><h3 style="margin-top:18px">Strung slowly, by eye and by hand.</h3><p>把 labor、time 和 judgement 讲出来。</p></div>
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/14.jpg')"><span class="pill">Batch</span><h3 style="margin-top:18px">Each bracelet carries a batch memory.</h3><p>把 provenance 延伸到 receipt 和售后关系里。</p></div>
+    </div>
+  </section>
+
+  <section class="receipt-section" id="receipt">
+    <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow">── 08 · Energy Receipt</span>
+      <h2>Proof, soul, and body meet in one ownership record.</h2>
+      <p>购买后不是普通 order confirmation，而是一张 Le Lian Energy Receipt：五行档案、matched bracelet、bead formula、small-town batch、maker note 和 90-day reattunement。</p>
+    </div>
+    <div class="receipt-card">
+      <div class="receipt-top">
+        <div>
+          <span class="eyebrow">Le Lian Energy Receipt</span>
+          <h2 id="receiptHeadline" style="font-size:clamp(32px,4vw,54px)">Shield · Grounding Edition</h2>
+        </div>
+        <span class="pill" id="receiptCode">LLN-000000</span>
+      </div>
+      <div class="receipt-grid">
+        <div class="receipt-line"><span>Wu Xing Soul</span><b id="receiptSoul">Earth leads, Water supports.</b></div>
+        <div class="receipt-line"><span>Premium Beads Body</span><b id="receiptBeads">Jasper · Agate · Smoky Quartz</b></div>
+        <div class="receipt-line"><span>Small-town Proof</span><b id="receiptBatch">LLN-EARTH-0426</b></div>
+        <div class="receipt-line"><span>Ritual Note</span><b id="receiptRitual">Touch once before saying yes.</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reattune" id="reattune">
+    <div class="wide-cta">
+      <div>
+        <span class="kicker">── Day 90 · Reattunement</span>
+        <h2 style="margin-top:20px;max-width:820px">Your energy changes. Your next bracelet should know that.</h2>
+        <p>最后一屏把一次购买变成持续关系：90 天后重新测试，用户可以从 Earth 转向 Water、从 Shield 转向 Focus，形成自然复购。</p>
+        <div class="actions"><a class="btn btn-light" href="#match">Re-check My Energy</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 Le Lian · Preferred Visual Preview v3</span>
+    <span>Small-town Proof → Wu Xing Soul → Premium Beads Body</span>
+  </footer>
+  <div class="toast" id="toast">Profile generated. PDP updated.</div>
+
+  <script>
+    const base = [
+      { id:'earth', name:'Earth', label:'Shield', color:'#b5a78a', state:'Shield', edition:'Grounding Edition', promise:'For steadiness, body-trust, and returning to the breath.', beads:'Jasper · Agate · Smoky Quartz', ritual:'Touch once before saying yes.', batch:'LLN-EARTH-0426' },
+      { id:'water', name:'Water', label:'Zen', color:'#8ca6b5', state:'Zen', edition:'Clarity Edition', promise:'For emotional flow, calm decisions, and softer evenings.', beads:'Blue Lace Agate · Moonstone · Clear Quartz', ritual:'Wear during your evening reset.', batch:'LLN-WATER-0426' },
+      { id:'wood', name:'Wood', label:'Flow', color:'#8a9a87', state:'Flow', edition:'Growth Edition', promise:'For new starts, creative momentum, and quiet ambition.', beads:'Green Aventurine · Moss Agate · Jade', ritual:'Put it on before beginning something new.', batch:'LLN-WOOD-0426' },
+      { id:'fire', name:'Fire', label:'Radiance', color:'#d4a89a', state:'Radiance', edition:'Radiance Edition', promise:'For warmth, visibility, and being at peace with being seen.', beads:'Sunstone · Carnelian · Rose Quartz', ritual:'Wear when you are ready to be seen.', batch:'LLN-FIRE-0426' },
+      { id:'metal', name:'Metal', label:'Focus', color:'#c8c2b5', state:'Focus', edition:'Focus Edition', promise:'For clean boundaries, discernment, and choosing what matters.', beads:'Howlite · Hematite · Clear Quartz', ritual:'Touch before making a clear decision.', batch:'LLN-METAL-0426' }
+    ];
+
+    const moodBias = {
+      calm: { water:4, metal:2, earth:1 },
+      anxious: { earth:5, water:3, metal:2, fire:-1 },
+      creative: { wood:4, fire:3, water:1 },
+      tired: { fire:4, wood:2, earth:1 }
+    };
+
+    function seasonBias(month) {
+      if ([3,4,5].includes(month)) return { wood:4, fire:1 };
+      if ([6,7,8].includes(month)) return { fire:4, earth:1 };
+      if ([9,10].includes(month)) return { metal:4, earth:2 };
+      if ([11,12,1].includes(month)) return { water:4, metal:1 };
+      return { earth:4, water:1 };
+    }
+
+    function normalize(weights) {
+      const total = weights.reduce((a,b)=>a+b,0);
+      const raw = weights.map(v => v / total * 100);
+      const whole = raw.map(Math.floor);
+      let remaining = 100 - whole.reduce((a,b)=>a+b,0);
+      raw.map((v,i)=>({i, f:v-Math.floor(v)})).sort((a,b)=>b.f-a.f).forEach(x=>{ if(remaining>0){ whole[x.i]++; remaining--; }});
+      return whole;
+    }
+
+    function compute(birth, mood) {
+      const parts = birth.split('-').map(Number);
+      const year = parts[0] || 0, month = parts[1] || 1, day = parts[2] || 1;
+      const digits = birth.replace(/\D/g,'').split('').map(Number);
+      const seed = digits.reduce((sum,digit,index)=>sum + digit * (index + 3), 17);
+      const seasonal = seasonBias(month);
+      const bias = moodBias[mood] || moodBias.anxious;
+      const weights = base.map((el, index) => {
+        const dateSignal = ((seed + (index + 5) * day + (year % 100) + month * 7) % 13) + 8;
+        return Math.max(4, dateSignal + (seasonal[el.id] || 0) + (bias[el.id] || 0));
+      });
+      const pcts = normalize(weights);
+      const elements = base.map((el,i)=>({...el, pct:pcts[i]}));
+      const ranked = [...elements].sort((a,b)=>b.pct-a.pct);
+      const code = 'LLN-' + String(Math.abs(seed * 37 + day * 101 + month * 17 + year)).slice(0,6).padStart(6,'0');
+      return { code, elements, dominant:ranked[0], secondary:ranked[1] };
+    }
+
+    let activeMood = 'anxious';
+    const resultEl = document.getElementById('result');
+    const orb = document.getElementById('orb');
+
+    document.querySelectorAll('.mood').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mood').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeMood = btn.dataset.mood;
+      });
+    });
+
+    function renderBeads() {
+      ['beadOrbitA','beadOrbitB','beadOrbitC'].forEach((id, idx) => {
+        const wrap = document.getElementById(id);
+        if (!wrap) return;
+        const tones = ['#b5a78a','#8ca6b5','#8a9a87','#d4a89a','#c8c2b5','#4a4339','#e8dfd3'];
+        wrap.innerHTML = Array.from({length: idx === 1 ? 16 : 12}).map((_, i) => `<span class="bead" style="--tone:${tones[(i + idx * 2) % tones.length]}"></span>`).join('');
+      });
+    }
+
+    function renderProfile() {
+      const birth = document.getElementById('birth').value || '1996-08-18';
+      const profile = compute(birth, activeMood);
+      orb.style.display = 'none';
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = '<span class="eyebrow" style="margin-bottom:22px">Your Elemental Read</span>' + profile.elements.map(el => `
+        <div class="bar-row">
+          <div class="bar-meta"><span>${el.name} · ${el.label}</span><span>${el.pct}%</span></div>
+          <div class="bar"><div class="fill" style="background:${el.color};width:${el.pct}%"></div></div>
+        </div>
+      `).join('');
+      document.getElementById('receiptBox').style.display = 'block';
+      document.getElementById('profileCode').textContent = profile.code;
+      document.getElementById('receiptTitle').textContent = `${profile.dominant.state} · ${profile.dominant.edition}`;
+      document.getElementById('receiptText').textContent = `${profile.dominant.name} leads, ${profile.secondary.name} supports. This profile now drives state highlight, PDP copy, bead formula, and Energy Receipt.`;
+      document.getElementById('pdpTitle').textContent = `Le Lian Bracelet · ${profile.dominant.edition}`;
+      document.getElementById('pdpPromise').textContent = profile.dominant.promise;
+      document.getElementById('dominantLabel').textContent = `${profile.dominant.name} · ${profile.dominant.state}`;
+      document.getElementById('nativeCopy').textContent = `Your profile carries ${profile.secondary.name}, but this season is calling in ${profile.dominant.name}.`;
+      document.getElementById('beadFormula').textContent = profile.dominant.beads;
+      document.getElementById('batchId').textContent = profile.dominant.batch;
+      document.getElementById('receiptHeadline').textContent = `${profile.dominant.state} · ${profile.dominant.edition}`;
+      document.getElementById('receiptCode').textContent = profile.code;
+      document.getElementById('receiptSoul').textContent = `${profile.dominant.name} leads, ${profile.secondary.name} supports.`;
+      document.getElementById('receiptBeads').textContent = profile.dominant.beads;
+      document.getElementById('receiptBatch').textContent = profile.dominant.batch;
+      document.getElementById('receiptRitual').textContent = profile.dominant.ritual;
+      document.querySelectorAll('.state-card').forEach(card => card.classList.toggle('active', card.dataset.state === profile.dominant.state));
+      document.querySelector('.bracelet').style.borderColor = profile.dominant.color;
+      const toast = document.getElementById('toast');
+      toast.textContent = `Profile ${profile.code} generated. PDP updated.`;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    }
+
+    document.getElementById('reveal').addEventListener('click', renderProfile);
+    document.getElementById('addCart').addEventListener('click', () => {
+      const toast = document.getElementById('toast');
+      toast.textContent = 'Matched bracelet added to ritual cart.';
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    });
+
+    renderBeads();
+    renderProfile();
+  </script>
+</body>
+</html>

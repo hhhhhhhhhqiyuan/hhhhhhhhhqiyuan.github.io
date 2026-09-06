@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/interactive/drums/assets/drumstick-cursor-right-hand.png" />
+    <title>Nikki — Drum Study</title>
+    <script type="module" crossorigin src="/interactive/drums/assets/index-fgES5utv.js"></script>
+    <link rel="stylesheet" crossorigin href="/interactive/drums/assets/index-71FHi9vz.css">
+    <style>
+      :root,body{background:#f2f1ef}
+      .experience{padding:0;min-height:100dvh;height:100dvh;display:grid;grid-template-rows:1fr;background:transparent}
+      .masthead{position:absolute;top:24px;right:32px;width:auto}
+      .identity,.controls{display:none}
+      .cover{width:min(96vw,96dvh,980px);background:#f2f1ef}
+      .cover::after{display:none}
+      /* Lift the light paper to white, then blend only the ink into the page.
+         Keep the original artwork and all hit-zone coordinates unchanged. */
+      .cover-art{filter:grayscale(1) contrast(1.2) brightness(1.12);mix-blend-mode:multiply}
+      @media (hover:hover) and (pointer:fine){.drumstick-cursor{display:block}}
+      @media (prefers-reduced-motion:reduce){.message-reveal{animation:none;opacity:1}.cover{transform:none}}
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

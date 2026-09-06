@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EAST OAK Exploration Canvas</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 1600px; height: 790px; margin: 0; overflow: hidden; }
+      body { background: #fff; color: #111; font-family: Arial, sans-serif; }
+      .canvas {
+        position: relative; width: 2880px; height: 1422px; overflow: hidden; background: #fff;
+        transform: scale(.5555555556); transform-origin: 0 0;
+      }
+      .kicker {
+        position: absolute; top: 70px; left: 88px; z-index: 20; margin: 0;
+        color: #e94b26; font-size: 22px; line-height: 1; letter-spacing: .08em;
+      }
+      .title { position: absolute; z-index: 20; top: 535px; left: 785px; width: 720px; }
+      .title h1 {
+        margin: 0; color: #111;
+        font-family: Inter, "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+        font-size: 82px; font-weight: 500; line-height: .98; letter-spacing: -.045em;
+      }
+      .title p {
+        width: 650px; margin: 28px 0 0; color: #6d6b66;
+        font-family: Arial, "PingFang SC", sans-serif; font-size: 24px; line-height: 1.55;
+      }
+      figure { position: absolute; z-index: 3; margin: 0; }
+      figure img { display: block; width: 100%; height: auto; box-shadow: 0 16px 44px rgba(25,25,20,.075); }
+      .crop { overflow: hidden; background: #fff; box-shadow: 0 16px 44px rgba(25,25,20,.075); }
+      .crop img { width: 100%; height: 100%; object-fit: cover; box-shadow: none; }
+      .a { top: 118px; left: 110px; width: 410px; }
+      .b { top: 360px; left: 250px; width: 178px; }
+      .c { top: 74px; left: 590px; width: 150px; }
+      .d { top: 100px; left: 1000px; width: 455px; }
+      .e { top: 372px; left: 550px; width: 152px; }
+      .f { top: 92px; left: 1650px; width: 460px; }
+      .g { top: 302px; left: 2180px; width: 530px; }
+      .h { top: 350px; left: 1545px; width: 150px; }
+      .i { top: 815px; left: 90px; width: 485px; }
+      .j { top: 902px; left: 650px; width: 250px; }
+      .k { top: 882px; left: 1100px; width: 465px; }
+      .l { top: 860px; left: 1690px; width: 430px; }
+      .m { top: 820px; left: 2500px; width: 230px; }
+      .n { top: 690px; left: 2175px; width: 385px; height: 235px; }
+      .o { top: 520px; left: 2520px; width: 120px; height: 350px; }
+    </style>
+  </head>
+  <body>
+    <main class="canvas">
+      <p class="kicker">02A · PAGE EXPLORATION</p>
+      <div class="title">
+        <h1>Exploration</h1>
+        <p>围绕发现、浏览、购买与账户管理，展开不同页面、组件与交互状态。</p>
+      </div>
+
+      <figure class="a"><img src="desktop-cart-empty.png" alt="" /></figure>
+      <figure class="b"><img src="mobile-cart-empty.png" alt="" /></figure>
+      <figure class="c"><img src="mobile-added-bag.png" alt="" /></figure>
+      <figure class="d"><img src="desktop-cart-drawer.png" alt="" /></figure>
+      <figure class="e"><img src="mobile-cart-page.png" alt="" /></figure>
+      <figure class="f"><img src="desktop-added-bag.png" alt="" /></figure>
+      <figure class="g"><img src="desktop-product-edit.png" alt="" /></figure>
+      <figure class="h"><img src="mobile-product-edit.png" alt="" /></figure>
+      <figure class="i"><img src="desktop-blog-grid.png" alt="" /></figure>
+      <figure class="j"><img src="desktop-recipe-page.png" alt="" /></figure>
+      <figure class="k"><img src="desktop-cart-page.png" alt="" /></figure>
+      <figure class="l"><img src="desktop-product-edit.png" alt="" /></figure>
+      <figure class="m"><img src="desktop-recipe-page.png" alt="" /></figure>
+      <figure class="n crop"><img src="desktop-added-bag.png" alt="" /></figure>
+      <figure class="o crop"><img src="mobile-added-bag.png" alt="" /></figure>
+    </main>
+  </body>
+</html>

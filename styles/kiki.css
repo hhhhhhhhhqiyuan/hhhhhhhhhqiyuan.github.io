@@ -1,0 +1,22 @@
+.kiki-page{--paper:#f6efe3;--ink:#3c2618;--muted:#78604c;--line:#ded0bd;background:var(--paper);color:var(--ink)}
+.kiki-hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding-block:64px 80px}
+.kiki-hero h1{margin:28px 0;font-size:clamp(76px,11vw,160px);line-height:.95;letter-spacing:-.065em;font-weight:600}
+.kiki-hero h1 span{display:block;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;line-height:1.4;margin-top:24px}
+.kiki-hero>img{width:100%;height:auto;border-radius:8px}
+.kiki-lead{font-size:18px;line-height:1.9;color:var(--muted);max-width:400px}
+.kiki-link{display:inline-block;margin-top:32px;padding-bottom:8px;border-bottom:1px solid currentColor;font-size:13px}
+.kiki-section{padding-block:70px;border-top:1px solid var(--line);scroll-margin-top:24px}
+.kiki-heading{margin-bottom:40px}.kiki-heading h2{font-size:clamp(28px,3vw,42px);line-height:1.4;letter-spacing:-.03em;margin-top:20px}
+.kiki-heading>p:last-child{max-width:660px;margin-top:18px;font-size:16px;line-height:1.9;color:var(--muted)}
+.kiki-gallery{display:grid;gap:24px}.kiki-gallery img{width:100%;height:auto;display:block}.kiki-gallery figure{min-width:0}
+.kiki-gallery--pair{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:24px;align-items:start}
+.kiki-note{font-size:12px;line-height:1.8;margin-top:20px;color:var(--muted)}
+.kiki-stories{background:#eee0cc}
+.kiki-story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-bottom:48px}
+.kiki-story video{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#f7f0e8;border-radius:8px}
+.kiki-story h3{font-size:20px;margin:20px 0 10px}.kiki-story p{font-size:14px;line-height:1.8;color:var(--muted)}
+.kiki-ending{padding-block:80px 100px;border-top:1px solid var(--line)}.kiki-ending h2{font-size:clamp(30px,4vw,52px);line-height:1.5;margin-top:24px;letter-spacing:-.03em}
+.kiki-page a:focus-visible{outline:2px solid #a95226;outline-offset:5px}
+@media(max-width:900px){.kiki-hero{gap:32px}.kiki-story-grid{gap:16px}.kiki-story h3{font-size:17px}.kiki-hero h1{font-size:90px}}
+@media(max-width:600px){.kiki-hero{grid-template-columns:1fr;padding-block:44px}.kiki-hero h1{font-size:100px}.kiki-hero>img{max-height:65svh;object-fit:contain}.kiki-section{padding-block:48px}.kiki-story-grid,.kiki-gallery--pair{grid-template-columns:1fr}.kiki-story-grid{gap:32px}.kiki-heading{margin-bottom:28px}.kiki-ending{padding-block:56px}.kiki-page .native-nav nav{gap:18px}.kiki-page .native-nav nav a{display:block}}
+

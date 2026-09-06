@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Le Lian · Energy Matching Framework Preview</title>
+  <style>
+    :root {
+      --ink: #151b26;
+      --paper: #fffef9;
+      --sage: #8a9a87;
+      --sage-soft: #b5c1ad;
+      --earth: #b5a78a;
+      --water: #8ca6b5;
+      --fire: #d4a89a;
+      --metal: #c8c2b5;
+      --clay: #4a4339;
+      --line: rgba(21, 27, 38, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .nav {
+      position: fixed;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 76px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--paper);
+      background: linear-gradient(to bottom, rgba(21,27,38,.42), rgba(21,27,38,0));
+      pointer-events: none;
+    }
+    .nav > * { pointer-events: auto; }
+    .brand { letter-spacing: .42em; font-size: 12px; }
+    .navlinks { display: flex; gap: 28px; font-size: 12px; letter-spacing: .14em; opacity: .86; }
+    .hero {
+      position: relative;
+      min-height: 760px;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: end;
+      padding: 120px 8vw 96px;
+      isolation: isolate;
+      background:
+        linear-gradient(90deg, rgba(21,27,38,.76), rgba(21,27,38,.34), rgba(21,27,38,.08)),
+        radial-gradient(circle at 74% 36%, rgba(181,193,173,.34), transparent 28%),
+        radial-gradient(circle at 18% 82%, rgba(212,168,154,.28), transparent 32%),
+        url('https://lelianbracelets.com/cdn/shop/files/0703_9304.jpg') center / cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(21,27,38,.48), transparent 44%);
+      z-index: -1;
+    }
+    .kicker { display: block; letter-spacing: .32em; font-size: 11px; color: rgba(255,254,249,.78); text-transform: uppercase; }
+    .hero h1 {
+      max-width: 850px;
+      margin: 28px 0 24px;
+      color: var(--paper);
+      font-size: clamp(52px, 7vw, 98px);
+      line-height: .94;
+      letter-spacing: -.06em;
+      font-weight: 500;
+    }
+    em { font-family: Georgia, ui-serif, serif; font-weight: 400; }
+    .hero em { color: #c8d3c2; }
+    .hero p { max-width: 520px; color: rgba(255,254,249,.76); line-height: 1.75; font-size: 16px; }
+    .actions { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 34px; align-items: center; }
+    .btn {
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 15px 26px;
+      font-size: 13px;
+      letter-spacing: .12em;
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-light { background: var(--paper); color: var(--ink); }
+    .btn-dark { background: var(--ink); color: var(--paper); }
+    .btn-outline { border: 1px solid rgba(21,27,38,.18); color: var(--ink); background: transparent; }
+    .btn-soft { background: rgba(255,254,249,.12); color: var(--paper); border: 1px solid rgba(255,254,249,.2); }
+    section { padding: 104px 8vw; }
+    .section-head { max-width: 760px; margin-bottom: 52px; }
+    .eyebrow { display: block; color: var(--sage); letter-spacing: .32em; font-size: 11px; text-transform: uppercase; margin-bottom: 18px; }
+    h2 { margin: 0; font-size: clamp(36px, 5vw, 58px); line-height: .98; font-weight: 500; letter-spacing: -.04em; }
+    h3 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.02em; }
+    p { color: rgba(21,27,38,.68); line-height: 1.75; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .quiz-card { background: #fff; border: 1px solid var(--line); border-radius: 30px; padding: 34px; box-shadow: 0 36px 90px rgba(21,27,38,.06); }
+    label { display: block; margin-bottom: 10px; font-size: 12px; letter-spacing: .18em; color: rgba(21,27,38,.68); text-transform: uppercase; }
+    input[type="date"] { width: 100%; padding: 15px 0; border: 0; border-bottom: 1px solid rgba(21,27,38,.18); background: transparent; color: var(--ink); font-size: 16px; outline: 0; }
+    .moods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 26px 0; }
+    .mood { border: 1px solid rgba(21,27,38,.16); background: transparent; border-radius: 999px; padding: 13px 12px; color: rgba(21,27,38,.72); cursor: pointer; letter-spacing: .04em; }
+    .mood.active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+    .orb-wrap { min-height: 430px; display: flex; align-items: center; justify-content: center; }
+    .orb {
+      width: min(320px, 72vw);
+      height: min(320px, 72vw);
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.8), transparent 17%),
+        radial-gradient(circle at 60% 62%, rgba(138,154,135,.55), transparent 36%),
+        radial-gradient(circle at 38% 70%, rgba(140,166,181,.38), transparent 34%),
+        linear-gradient(135deg, #f6efe7, #b5c1ad 48%, #8ca6b5);
+      box-shadow: 0 40px 110px rgba(138,154,135,.45);
+      animation: breathe 4.8s ease-in-out infinite;
+    }
+    .orb::after { content: ""; position: absolute; inset: 16%; border-radius: 50%; border: 1px solid rgba(255,255,255,.45); }
+    @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+    .result { width: 100%; display: none; }
+    .bar-row { margin: 18px 0; }
+    .bar-meta { display: flex; justify-content: space-between; font-size: 13px; color: rgba(21,27,38,.72); margin-bottom: 7px; }
+    .bar { height: 3px; background: rgba(21,27,38,.1); border-radius: 20px; overflow: hidden; }
+    .fill { height: 100%; width: 0%; transition: width 1s ease; }
+    .receipt { margin-top: 28px; border: 1px solid rgba(21,27,38,.1); background: rgba(255,254,249,.8); border-radius: 22px; padding: 22px; }
+    .receipt strong { display: block; margin-top: 6px; font-size: 23px; font-weight: 500; }
+    .pill { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(21,27,38,.12); font-size: 11px; letter-spacing: .16em; color: rgba(21,27,38,.65); text-transform: uppercase; }
+    .element-strip { display: grid; grid-template-columns: repeat(5, 1fr); min-height: 420px; border-radius: 34px; overflow: hidden; border: 1px solid rgba(21,27,38,.08); }
+    .element { padding: 28px; display: flex; flex-direction: column; justify-content: end; position: relative; color: var(--ink); }
+    .element::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(21,27,38,.18), transparent); opacity: .45; }
+    .element > * { position: relative; }
+    .element small { letter-spacing: .32em; font-size: 10px; opacity: .65; text-transform: uppercase; }
+    .element b { margin-top: 12px; font-size: 25px; font-weight: 500; }
+    .state-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .state-card { min-height: 300px; padding: 28px; border-radius: 26px; background: #fff; border: 1px solid rgba(21,27,38,.1); display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .state-card.active { border-color: rgba(138,154,135,.65); box-shadow: 0 28px 70px rgba(138,154,135,.22); transform: translateY(-4px); }
+    .state-icon { width: 58px; height: 58px; border-radius: 50%; background: rgba(138,154,135,.15); display: grid; place-items: center; font-family: Georgia, serif; font-size: 28px; }
+    .pdp { background: #fff; }
+    .product-stage { min-height: 620px; border-radius: 34px; overflow: hidden; background:
+      radial-gradient(circle at 50% 35%, rgba(255,255,255,.86), transparent 25%),
+      linear-gradient(135deg, rgba(181,193,173,.4), rgba(244,239,231,.7), rgba(140,166,181,.28));
+      position: relative; display: grid; place-items: center; }
+    .bracelet { width: min(430px, 78vw); aspect-ratio: 1; border-radius: 50%; border: 28px dotted rgba(74,67,57,.42); filter: drop-shadow(0 36px 55px rgba(21,27,38,.16)); animation: spin 28s linear infinite; }
+    .bracelet::after { content: ""; position: absolute; inset: 28%; border-radius: 50%; border: 1px solid rgba(21,27,38,.09); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .product-panel { padding: 20px 0; }
+    .price { font-size: 30px; margin: 16px 0; }
+    .stack { display: grid; gap: 14px; margin: 28px 0; }
+    .stack-item { padding: 18px; border: 1px solid rgba(21,27,38,.1); border-radius: 18px; background: rgba(255,254,249,.64); }
+    .dark { background: var(--clay); color: var(--paper); }
+    .dark p { color: rgba(255,254,249,.64); }
+    .dark .eyebrow { color: var(--sage-soft); }
+    .story-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .story { min-height: 360px; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; justify-content: end; background: linear-gradient(to top, rgba(21,27,38,.74), rgba(21,27,38,.14)), var(--img) center/cover; color: var(--paper); }
+    .story p { color: rgba(255,254,249,.67); }
+    .system-map { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-top: 48px; }
+    .node { padding: 20px 14px; border-radius: 20px; border: 1px solid rgba(21,27,38,.1); background: #fff; min-height: 120px; }
+    .node small { display: block; color: var(--sage); letter-spacing: .24em; font-size: 10px; margin-bottom: 12px; }
+    .node b { font-size: 15px; font-weight: 500; }
+    .node.active { background: var(--ink); color: var(--paper); }
+    .footer { padding: 48px 8vw; border-top: 1px solid rgba(21,27,38,.1); display: flex; justify-content: space-between; gap: 20px; color: rgba(21,27,38,.6); font-size: 12px; letter-spacing: .12em; }
+    .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(140%); z-index: 50; background: var(--ink); color: var(--paper); padding: 14px 18px; border-radius: 999px; font-size: 13px; letter-spacing: .08em; box-shadow: 0 20px 50px rgba(21,27,38,.26); transition: transform .35s ease; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    @media (max-width: 980px) {
+      .grid-2, .story-row { grid-template-columns: 1fr; }
+      .element-strip { grid-template-columns: 1fr; }
+      .state-grid { grid-template-columns: 1fr 1fr; }
+      .system-map { grid-template-columns: 1fr 1fr; }
+      .navlinks { display: none; }
+      section { padding: 78px 6vw; }
+      .hero { padding-left: 6vw; padding-right: 6vw; }
+    }
+    @media (max-width: 620px) {
+      .state-grid, .system-map { grid-template-columns: 1fr; }
+      .moods { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#top">LE LIAN</a>
+    <div class="navlinks">
+      <a href="#quiz">MATCH</a>
+      <a href="#states">STATES</a>
+      <a href="#pdp">SHOP</a>
+      <a href="#ritual">RITUAL</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <span class="kicker">── Energy · Matched · By · Wu Xing</span>
+      <h1>A bracelet tuned<br>to <em>your</em> frequency.</h1>
+      <p>优化后的框架把 Energy Match 从单点互动升级成全站状态源：你的五行档案会继续驱动推荐卡片、PDP、receipt 和 Day-90 reattunement。</p>
+      <div class="actions">
+        <a class="btn btn-light" href="#quiz">Find Your Match</a>
+        <a class="btn btn-soft" href="#pdp">See PDP Logic · $99</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="quiz">
+    <div class="section-head">
+      <span class="eyebrow">── 01 · Energy Match</span>
+      <h2>Decode your <em style="color:var(--sage)">five-element</em> profile.</h2>
+      <p>这里是新版闭环的起点：用户不只是做测试，而是生成一个会贯穿全页的能量档案。</p>
+    </div>
+    <div class="grid-2">
+      <div class="quiz-card">
+        <label for="birth">Date of Birth</label>
+        <input id="birth" type="date" value="1996-08-18" />
+        <div style="height:26px"></div>
+        <label>Today, you feel…</label>
+        <div class="moods" id="moods">
+          <button class="mood" data-mood="calm">Calm & Centered</button>
+          <button class="mood active" data-mood="anxious">Anxious & Scattered</button>
+          <button class="mood" data-mood="creative">Creative Spark</button>
+          <button class="mood" data-mood="tired">Drained</button>
+        </div>
+        <button class="btn btn-dark" id="reveal">Reveal My Profile →</button>
+        <div class="receipt" id="receiptBox" style="display:none">
+          <span class="pill" id="profileCode">LLN-000000</span>
+          <strong id="receiptTitle">Your matched bracelet is loading.</strong>
+          <p id="receiptText">The profile result will now travel into product recommendation, state cards, and the 90-day ritual.</p>
+        </div>
+      </div>
+      <div class="orb-wrap">
+        <div class="orb" id="orb"></div>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">── 02 · Wu Xing Explanation</span>
+      <h2>Five elements, one readable recommendation system.</h2>
+      <p>新版把五行解释从“知识卡”改成“推荐逻辑”：每个元素都对应一种状态、一个商品版本和一个仪式语义。</p>
+    </div>
+    <div class="element-strip">
+      <div class="element" style="background:var(--earth)"><small>Grounding</small><b>Earth</b><p>Steadiness, body-trust, return to breath.</p></div>
+      <div class="element" style="background:var(--water)"><small>Clarity</small><b>Water</b><p>Emotional flow, calm decisions, softer evenings.</p></div>
+      <div class="element" style="background:var(--sage)"><small>Growth</small><b>Wood</b><p>New starts, creative momentum, quiet ambition.</p></div>
+      <div class="element" style="background:var(--fire)"><small>Radiance</small><b>Fire</b><p>Warmth, visibility, being seen with ease.</p></div>
+      <div class="element" style="background:var(--metal)"><small>Focus</small><b>Metal</b><p>Clear boundaries, discernment, refined attention.</p></div>
+    </div>
+  </section>
+
+  <section id="states">
+    <div class="section-head">
+      <span class="eyebrow">── 03 · State Recommendation</span>
+      <h2>The result points to a state, not just a product.</h2>
+      <p>完成 quiz 后，用户匹配到的状态卡会被高亮，形成从诊断到购买的心理连续性。</p>
+    </div>
+    <div class="state-grid" id="stateGrid">
+      <a class="state-card" data-state="Shield" href="#pdp"><div><div class="state-icon">土</div></div><div><span class="pill">Earth</span><h3 style="margin-top:16px">Shield</h3><p>稳住身体感，适合焦虑、过载、需要边界的时候。</p></div></a>
+      <a class="state-card" data-state="Flow" href="#pdp"><div><div class="state-icon">木</div></div><div><span class="pill">Wood</span><h3 style="margin-top:16px">Flow</h3><p>适合开启新阶段、创作、行动力回流。</p></div></a>
+      <a class="state-card" data-state="Radiance" href="#pdp"><div><div class="state-icon">火</div></div><div><span class="pill">Fire</span><h3 style="margin-top:16px">Radiance</h3><p>适合表达、被看见、恢复热度与自信。</p></div></a>
+      <a class="state-card" data-state="Zen" href="#pdp"><div><div class="state-icon">水</div></div><div><span class="pill">Water / Metal</span><h3 style="margin-top:16px">Zen</h3><p>适合清理思绪、安静决策、降低内耗。</p></div></a>
+    </div>
+  </section>
+
+  <section class="pdp" id="pdp">
+    <div class="grid-2">
+      <div class="product-stage"><div class="bracelet"></div></div>
+      <div class="product-panel">
+        <span class="eyebrow">── 04 · Personalized PDP</span>
+        <h2 id="pdpTitle">Le Lian Bracelet · Grounding Edition</h2>
+        <div class="price">$99</div>
+        <p id="pdpPromise">For steadiness, body-trust, and returning to the breath.</p>
+        <div class="stack">
+          <div class="stack-item"><span class="pill">Dominant Element</span><h3 id="dominantLabel" style="margin-top:12px">Earth · Grounding</h3></div>
+          <div class="stack-item"><span class="pill">Secondary Element</span><h3 id="secondaryLabel" style="margin-top:12px">Water · Clarity</h3></div>
+          <div class="stack-item"><span class="pill">Framework Change</span><p>Quiz result now drives PDP copy, edition naming, CTA, and receipt code.</p></div>
+        </div>
+        <button class="btn btn-dark" id="addCart">Add Matched Bracelet →</button>
+        <a class="btn btn-outline" href="#ritual" style="margin-left:10px">View Day-90 Ritual</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">── 05 · Trust Layer</span>
+      <h2>Before buying, the page answers the quiet doubts.</h2>
+      <p>建议把材质、产地、退换、尺寸、清洁、能量设定这些“不敢问的问题”放在 PDP 后，用更克制的语气降低购买阻力。</p>
+    </div>
+    <div class="system-map">
+      <div class="node active"><small>01</small><b>Hero Promise</b></div>
+      <div class="node active"><small>02</small><b>Energy Match</b></div>
+      <div class="node active"><small>03</small><b>Wu Xing Logic</b></div>
+      <div class="node active"><small>04</small><b>State Cards</b></div>
+      <div class="node active"><small>05</small><b>Personal PDP</b></div>
+      <div class="node"><small>06</small><b>Trust / Origin</b></div>
+      <div class="node"><small>07</small><b>90-Day Ritual</b></div>
+    </div>
+  </section>
+
+  <section class="dark" id="ritual">
+    <div class="section-head">
+      <span class="eyebrow">── 06 · Ritual & Retention</span>
+      <h2>After purchase, the match becomes a relationship.</h2>
+      <p>最后一段不再只是品牌故事，而是把用户带进 receipt、village 和 Day-90 reattunement，让一次购买变成持续的能量复调。</p>
+    </div>
+    <div class="story-row">
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/IN_TEMPLE2s.jpg')"><span class="pill" style="color:#fffef9;border-color:rgba(255,255,255,.25)">Origin</span><h3 style="margin-top:18px">Small-town provenance</h3><p>产地故事服务于信任，而不是单纯装饰。</p></div>
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/our_story.png')"><span class="pill" style="color:#fffef9;border-color:rgba(255,255,255,.25)">Receipt</span><h3 style="margin-top:18px">Energy receipt</h3><p>用户拿到的是一份可保存、可分享、可复查的个人档案。</p></div>
+      <div class="story" style="--img:url('https://lelianbracelets.com/cdn/shop/files/14.jpg')"><span class="pill" style="color:#fffef9;border-color:rgba(255,255,255,.25)">Day 90</span><h3 style="margin-top:18px">Reattunement</h3><p>90 天后重新测试，形成复购和关系续航。</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 Le Lian · Framework Preview</span>
+    <span>Hero → Match → State → PDP → Trust → Ritual</span>
+  </footer>
+  <div class="toast" id="toast">Matched bracelet added to ritual cart.</div>
+
+  <script>
+    const base = [
+      { id:'earth', name:'Earth', label:'Grounding', color:'#b5a78a', state:'Shield', edition:'Grounding Edition', promise:'For steadiness, body-trust, and returning to the breath.' },
+      { id:'water', name:'Water', label:'Clarity', color:'#8ca6b5', state:'Zen', edition:'Clarity Edition', promise:'For emotional flow, calm decisions, and softer evenings.' },
+      { id:'wood', name:'Wood', label:'Growth', color:'#8a9a87', state:'Flow', edition:'Growth Edition', promise:'For new starts, creative momentum, and quiet ambition.' },
+      { id:'fire', name:'Fire', label:'Radiance', color:'#d4a89a', state:'Radiance', edition:'Radiance Edition', promise:'For warmth, visibility, and being at peace with being seen.' },
+      { id:'metal', name:'Metal', label:'Focus', color:'#c8c2b5', state:'Zen', edition:'Focus Edition', promise:'For mental clarity, clean boundaries, and choosing what matters.' }
+    ];
+    const moodBias = {
+      calm: { earth:3, water:2, metal:1 },
+      anxious: { earth:5, water:3, metal:2, fire:-1 },
+      creative: { wood:4, fire:3, water:1 },
+      tired: { fire:4, wood:2, earth:1 }
+    };
+    function seasonBias(month) {
+      if ([3,4,5].includes(month)) return { wood:4, fire:1 };
+      if ([6,7,8].includes(month)) return { fire:4, earth:1 };
+      if ([9,10].includes(month)) return { metal:4, earth:2 };
+      if ([11,12,1].includes(month)) return { water:4, metal:1 };
+      return { earth:4, water:1 };
+    }
+    function normalize(weights) {
+      const total = weights.reduce((a,b)=>a+b,0);
+      const raw = weights.map(v => v / total * 100);
+      const whole = raw.map(Math.floor);
+      let remaining = 100 - whole.reduce((a,b)=>a+b,0);
+      raw.map((v,i)=>({i, f:v-Math.floor(v)})).sort((a,b)=>b.f-a.f).forEach(x=>{ if(remaining>0){ whole[x.i]++; remaining--; }});
+      return whole;
+    }
+    function compute(birth, mood) {
+      const parts = birth.split('-').map(Number);
+      const year = parts[0] || 0, month = parts[1] || 1, day = parts[2] || 1;
+      const digits = birth.replace(/\D/g,'').split('').map(Number);
+      const seed = digits.reduce((sum,digit,index)=>sum + digit * (index + 3), 17);
+      const seasonal = seasonBias(month);
+      const bias = moodBias[mood];
+      const weights = base.map((el, index) => {
+        const dateSignal = ((seed + (index + 5) * day + (year % 100) + month * 7) % 13) + 8;
+        return Math.max(4, dateSignal + (seasonal[el.id] || 0) + (bias[el.id] || 0));
+      });
+      const pcts = normalize(weights);
+      const elements = base.map((el,i)=>({...el, pct:pcts[i]}));
+      const ranked = [...elements].sort((a,b)=>b.pct-a.pct);
+      const code = 'LLN-' + String(Math.abs(seed * 37 + day * 101 + month * 17 + year)).slice(0,6).padStart(6,'0');
+      return { code, elements, dominant:ranked[0], secondary:ranked[1] };
+    }
+    let activeMood = 'anxious';
+    const resultEl = document.getElementById('result');
+    const orb = document.getElementById('orb');
+    document.querySelectorAll('.mood').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mood').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeMood = btn.dataset.mood;
+      });
+    });
+    function renderProfile() {
+      const birth = document.getElementById('birth').value || '1996-08-18';
+      const profile = compute(birth, activeMood);
+      orb.style.display = 'none';
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = '<span class="eyebrow" style="margin-bottom:22px">Your Elemental Read</span>' + profile.elements.map(el => `
+        <div class="bar-row">
+          <div class="bar-meta"><span>${el.name} · ${el.label}</span><span>${el.pct}%</span></div>
+          <div class="bar"><div class="fill" style="background:${el.color};width:${el.pct}%"></div></div>
+        </div>
+      `).join('');
+      document.getElementById('receiptBox').style.display = 'block';
+      document.getElementById('profileCode').textContent = profile.code;
+      document.getElementById('receiptTitle').textContent = `${profile.dominant.state} · ${profile.dominant.edition}`;
+      document.getElementById('receiptText').textContent = `${profile.dominant.name} leads, ${profile.secondary.name} supports. This profile now drives state highlight, PDP copy, and Day-90 reattunement.`;
+      document.getElementById('pdpTitle').textContent = `Le Lian Bracelet · ${profile.dominant.edition}`;
+      document.getElementById('pdpPromise').textContent = profile.dominant.promise;
+      document.getElementById('dominantLabel').textContent = `${profile.dominant.name} · ${profile.dominant.label}`;
+      document.getElementById('secondaryLabel').textContent = `${profile.secondary.name} · ${profile.secondary.label}`;
+      document.querySelectorAll('.state-card').forEach(card => card.classList.toggle('active', card.dataset.state === profile.dominant.state));
+      document.querySelector('.bracelet').style.borderColor = profile.dominant.color;
+      const toast = document.getElementById('toast');
+      toast.textContent = `Profile ${profile.code} generated. PDP updated.`;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    }
+    document.getElementById('reveal').addEventListener('click', renderProfile);
+    document.getElementById('addCart').addEventListener('click', () => {
+      const toast = document.getElementById('toast');
+      toast.textContent = 'Matched bracelet added to ritual cart.';
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    });
+    renderProfile();
+  </script>
+</body>
+</html>

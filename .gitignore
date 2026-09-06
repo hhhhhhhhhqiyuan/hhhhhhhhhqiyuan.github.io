@@ -1,1 +1,11 @@
 .DS_Store
+
+# Local previews, generated QA output, and temporary working files.
+/.audit/
+/audits/
+/baseline/
+/tmp/
+node_modules/
+__pycache__/
+.env
+.env.*
