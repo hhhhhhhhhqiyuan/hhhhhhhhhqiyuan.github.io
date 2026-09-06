@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /projects/kiki-refinement-review.html
+Disallow: /projects/kiki-sketch-review.html
+
+Sitemap: https://hhhhhhhhhqiyuan.github.io/sitemap.xml
