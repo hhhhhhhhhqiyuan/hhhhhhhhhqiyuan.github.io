@@ -1,0 +1,30 @@
+/* Social performance: scoped to the two brand case studies. */
+.social-results { background: #eeede8; color: #252a25; }
+.social-results__period { display:flex; flex-wrap:wrap; gap:12px 24px; margin:0 0 24px; font-size:15px; line-height:1.7; font-variant-numeric:tabular-nums; }
+.social-results__period span { color:#61665e; }
+.social-results__metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid #c6cbc0; border-bottom:1px solid #c6cbc0; }
+.social-results__metrics article { padding:36px 28px; display:flex; flex-direction:column; gap:16px; }
+.social-results__metrics article:first-child { padding-left:0; }
+.social-results__metrics article + article { border-left:1px solid #c6cbc0; }
+.social-results__metrics strong { font-size:clamp(40px,5.4vw,76px); font-weight:500; line-height:1.12; letter-spacing:-.045em; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.social-results__metrics small { font-size:24px; margin-left:8px; letter-spacing:0; }
+.social-results__metrics article > span { font-size:16px; line-height:1.6; }
+.social-results__note { max-width:840px; margin:20px 0 32px; font-size:13px; line-height:1.8; color:#61665e; }
+.social-results__evidence { border-top:1px solid #c6cbc0; border-bottom:1px solid #c6cbc0; }
+.social-results__evidence summary { cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 0; font-size:16px; list-style:none; }
+.social-results__evidence summary::-webkit-details-marker { display:none; }
+.social-results__evidence summary span { transition:transform .2s; }
+.social-results__evidence[open] summary span { transform:rotate(45deg); }
+.social-results__evidence summary:focus-visible,.social-results__evidence a:focus-visible { outline:2px solid #33513c; outline-offset:5px; }
+.social-results__evidence figure { margin:0 0 24px; }
+.social-results__evidence a { display:block; }
+.social-results__evidence img { display:block; width:100%; height:auto; }
+.social-results__evidence figcaption { margin-top:12px; font-size:13px; line-height:1.7; color:#61665e; }
+@media(max-width:640px) {
+ .social-results__metrics { grid-template-columns:1fr; }
+ .social-results__metrics article,.social-results__metrics article:first-child { padding:25px 0; gap:10px; }
+ .social-results__metrics article + article { border-left:0; border-top:1px solid #c6cbc0; }
+ .social-results__metrics strong { font-size:52px; }
+ .social-results__period { gap:4px; flex-direction:column; }
+}
+@media(prefers-reduced-motion:reduce) { .social-results__evidence summary span { transition:none; } }

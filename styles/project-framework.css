@@ -5326,8 +5326,9 @@ dd {
 .east-oak-case > main > #reusable-system { order: 5; }
 .east-oak-case > main > #evidence { order: 6; }
 .east-oak-case > main > #lifecycle { order: 7; }
-.east-oak-case > main > #results { order: 8; }
-.east-oak-case > main > .final-result { order: 9; }
+.east-oak-case > main > #social-media { order: 8; }
+.east-oak-case > main > #results { order: 9; }
+.east-oak-case > main > .final-result { order: 10; }
 
 /* ACACIA — keep project framing and causal chain in one strategy chapter. */
 .acacia-case > main > #overview {
