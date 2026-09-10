@@ -2,8 +2,6 @@
   const demo = document.querySelector("[data-dtc-demo]");
   if (!demo) return;
 
-  const loadButton = demo.querySelector("[data-dtc-load]");
-  const prompt = demo.querySelector("[data-dtc-prompt]");
   const frame = demo.querySelector("[data-dtc-frame]");
   const tabs = [...demo.querySelectorAll("[data-page-src]")];
   const progress = demo.querySelector("[data-dtc-progress]");
@@ -16,7 +14,6 @@
   let lastFrame = 0;
   let animationFrame = 0;
   let internalDocument = null;
-  let started = false;
   let pageActive = true;
 
   const setStatus = (isPaused) => {
@@ -105,8 +102,8 @@
     }
   };
 
-  frame.addEventListener("load", () => {
-    if (!started || !frame.getAttribute("src")) return;
+  const onFrameLoad = () => {
+    if (!frame.getAttribute("src")) return;
     loaded = true;
     lastFrame = 0;
     pausedUntil = performance.now() + 1100;
@@ -119,30 +116,24 @@
     updateProgress();
     setStatus(reduceMotion.matches);
     syncAnimation();
-  });
+  };
+  frame.addEventListener("load", onFrameLoad);
 
   frame.addEventListener("mouseenter", () => pause());
   frame.addEventListener("pointerdown", () => pause());
   frame.addEventListener("touchstart", () => pause(), { passive: true });
 
   const loadPage = (tab) => {
-    if (started && tab.getAttribute("aria-selected") === "true") return;
+    if (tab.getAttribute("aria-selected") === "true") return;
     tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
-    started = true;
     loaded = false;
     syncAnimation();
     progress.style.width = "0%";
     status.textContent = "LOADING PAGE";
     status.parentElement.classList.add("is-paused");
     frame.title = tab.dataset.pageTitle;
-    frame.hidden = false;
-    prompt.hidden = true;
     frame.src = tab.dataset.pageSrc;
   };
-  loadButton.addEventListener("click", () => {
-    loadPage(tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0]);
-    frame.focus();
-  });
   tabs.forEach((tab) => tab.addEventListener("click", () => loadPage(tab)));
 
   const observer = new IntersectionObserver(
@@ -156,6 +147,9 @@
   );
 
   observer.observe(demo);
+  // A cached frame may finish before this deferred script attaches its listener.
+  if (frame.contentDocument?.readyState === "complete" &&
+      frame.contentDocument.URL !== "about:blank") onFrameLoad();
   reduceMotion.addEventListener?.("change", () => {
     if (loaded) setStatus(reduceMotion.matches);
     syncAnimation();
