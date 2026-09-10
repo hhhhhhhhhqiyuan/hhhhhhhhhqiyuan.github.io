@@ -2,6 +2,8 @@
   const demo = document.querySelector("[data-dtc-demo]");
   if (!demo) return;
 
+  const loadButton = demo.querySelector("[data-dtc-load]");
+  const prompt = demo.querySelector("[data-dtc-prompt]");
   const frame = demo.querySelector("[data-dtc-frame]");
   const tabs = [...demo.querySelectorAll("[data-page-src]")];
   const progress = demo.querySelector("[data-dtc-progress]");
@@ -13,7 +15,9 @@
   let pausedUntil = 0;
   let lastFrame = 0;
   let animationFrame = 0;
-  let internalWindow = null;
+  let internalDocument = null;
+  let started = false;
+  let pageActive = true;
 
   const setStatus = (isPaused) => {
     status.textContent = isPaused ? "PAUSED · SCROLL MANUALLY" : "AUTO SCROLL";
@@ -48,9 +52,20 @@
     setStatus(true);
   };
 
+  const shouldAnimate = () => loaded && inView && pageActive && !document.hidden && !reduceMotion.matches;
+  const syncAnimation = () => {
+    if (shouldAnimate()) {
+      if (!animationFrame) animationFrame = requestAnimationFrame(loop);
+    } else {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      lastFrame = 0;
+    }
+  };
   const loop = (time) => {
+    animationFrame = 0;
+    if (!shouldAnimate()) return;
     animationFrame = requestAnimationFrame(loop);
-    if (!loaded || !inView || reduceMotion.matches) return;
 
     if (time < pausedUntil) {
       updateProgress();
@@ -78,18 +93,20 @@
 
   const bindManualControls = () => {
     try {
-      if (internalWindow === frame.contentWindow) return;
-      internalWindow = frame.contentWindow;
+      if (internalDocument === frame.contentDocument) return;
+      internalDocument = frame.contentDocument;
+      const internalWindow = frame.contentWindow;
       ["wheel", "touchstart", "pointerdown", "keydown"].forEach((eventName) => {
         internalWindow.addEventListener(eventName, () => pause(), { passive: true });
       });
       internalWindow.addEventListener("scroll", updateProgress, { passive: true });
     } catch (_error) {
-      internalWindow = null;
+      internalDocument = null;
     }
   };
 
   frame.addEventListener("load", () => {
+    if (!started || !frame.getAttribute("src")) return;
     loaded = true;
     lastFrame = 0;
     pausedUntil = performance.now() + 1100;
@@ -100,38 +117,50 @@
     }
     bindManualControls();
     updateProgress();
+    setStatus(reduceMotion.matches);
+    syncAnimation();
   });
 
   frame.addEventListener("mouseenter", () => pause());
   frame.addEventListener("pointerdown", () => pause());
   frame.addEventListener("touchstart", () => pause(), { passive: true });
 
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      if (tab.getAttribute("aria-selected") === "true") return;
-      tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
-      loaded = false;
-      progress.style.width = "0%";
-      status.textContent = "LOADING PAGE";
-      status.parentElement.classList.add("is-paused");
-      frame.title = tab.dataset.pageTitle;
-      frame.src = tab.dataset.pageSrc;
-    });
+  const loadPage = (tab) => {
+    if (started && tab.getAttribute("aria-selected") === "true") return;
+    tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+    started = true;
+    loaded = false;
+    syncAnimation();
+    progress.style.width = "0%";
+    status.textContent = "LOADING PAGE";
+    status.parentElement.classList.add("is-paused");
+    frame.title = tab.dataset.pageTitle;
+    frame.hidden = false;
+    prompt.hidden = true;
+    frame.src = tab.dataset.pageSrc;
+  };
+  loadButton.addEventListener("click", () => {
+    loadPage(tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0]);
+    frame.focus();
   });
+  tabs.forEach((tab) => tab.addEventListener("click", () => loadPage(tab)));
 
   const observer = new IntersectionObserver(
     ([entry]) => {
       inView = entry.isIntersecting && entry.intersectionRatio >= 0.28;
       lastFrame = 0;
       if (inView) pausedUntil = performance.now() + 700;
+      syncAnimation();
     },
     { threshold: [0, 0.28, 0.55] }
   );
 
   observer.observe(demo);
-  reduceMotion.addEventListener?.("change", () => setStatus(reduceMotion.matches));
-  if (reduceMotion.matches) setStatus(true);
-  animationFrame = requestAnimationFrame(loop);
-
-  window.addEventListener("pagehide", () => cancelAnimationFrame(animationFrame), { once: true });
+  reduceMotion.addEventListener?.("change", () => {
+    if (loaded) setStatus(reduceMotion.matches);
+    syncAnimation();
+  });
+  document.addEventListener("visibilitychange", syncAnimation);
+  window.addEventListener("pagehide", () => { pageActive = false; syncAnimation(); });
+  window.addEventListener("pageshow", () => { pageActive = true; syncAnimation(); });
 })();
