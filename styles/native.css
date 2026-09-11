@@ -46,3 +46,9 @@ dialog.media-dialog{width:min(1200px,94vw);height:min(900px,92vh);padding:0;bord
 .work-tile__overlay small,.work-tile__overlay p{font-family:"PingFang SC","Noto Sans SC","Helvetica Neue",Arial,sans-serif}
 @media(max-width:1100px){.work-tile{height:520px}}
 @media(max-width:560px){.work-section{padding-bottom:96px}.work-tile{height:420px}.home-native__portrait figcaption{font-size:16px;line-height:22px}.home-native__portrait strong{font-size:20px;line-height:28px}}
+
+/* Keep the role visible above the homepage statement. */
+.home-native__hero .home-native__identity{margin:84px 0 0;font-size:17px;line-height:26px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.home-native__hero .home-native__identity + h1{margin-top:17px}
+@media(max-width:1100px){.home-native__hero .home-native__identity{margin-top:28px}.home-native__hero .home-native__identity + h1{margin-top:18px}}
+@media(max-width:560px){.home-native__hero .home-native__identity{font-size:15px;line-height:24px}}
