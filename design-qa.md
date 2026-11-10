@@ -1,215 +1,135 @@
-# Meat Probe case — design QA
+# Homepage visual QA — dark direction 02
 
-**Source visual truth**
-- Figma frame: `https://www.figma.com/design/UnbIOQnXiVESO8z9SrgEe6/Untitled?node-id=775-102&t=85Wi6w3aUmlRWwmI-1`
-- Source imagery: EAST OAK product-page square gallery, saved in `assets/portfolio/meat-probe/official-square/`, plus the existing `assets/portfolio/meat-probe/aplus/` artwork.
-- Source pixels: official square gallery assets 1620 × 1620 px; A+ assets 4096 × 1679 px.
+final result: passed
 
-**Rendered implementation**
-- Local route / browser-rendered capture target: `http://localhost:4173/projects/meat-probe.html`
-- Homepage entry capture target: `http://localhost:4173/?v=20260902-meat-probe-r2#visual-work`
-- Implementation screenshot evidence: Codex in-app browser captures from tabs 9 and 10 in this task; the browser provider did not expose a persistent filesystem path.
-- Desktop state: 1280 × 720 CSS px, normal page state, DPR 2 during visual capture.
-- Mobile state: 390 × 844 CSS px, normal page state, DPR 1.
-- Density normalization: source artwork was exported at native size and downsampled only for web delivery; layout was judged at CSS size rather than by comparing raw source-pixel density.
+## Scope and visual truth
+- Source: /Users/nikki/.codex/generated_images/01a0852e-9d5a-7770-8488-315c6d957a66/exec-965db611-230e-4d10-969f-e0ade2787d8b.png
+- Implementation: http://localhost:4176/
+- Implementation capture: /tmp/nikki-dark-preview/desktop-comparison-final.png
+- Combined comparison: /tmp/nikki-dark-preview/comparison-final.png
+- Source is 946 × 1663 px. Implementation is 946 × 1664 px at 946 × 1664 CSS viewport, 1× density. One-pixel source padding only. Both show the default top-of-homepage state.
+- Mobile: /tmp/nikki-dark-preview/mobile-top.png and mobile-sop.png, 390 × 844 CSS/px. Additional 320 × 740 overflow check. Normal browser size restored to 1208 × 752.
+- Final handoff capture: /tmp/nikki-dark-preview/homepage-preview.png.
 
-**Full-view comparison evidence**
-- The page keeps the portfolio's existing dark/paper/white chapter rhythm, compact uppercase labels, orange CTA, rounded media frames, and generous section spacing.
-- The source artwork is shown without reconstructed graphics or placeholder assets. PDP cards retain their square canvas; A+ banners retain their original wide aspect ratio.
-- Homepage V02 uses the original product-overview art with a dark readability gradient and remains visually equal in footprint to the other commercial-visual cards.
+## Intentional content adaptations
+- The user has a real 3C case but has not provided its assets. The fictional dashcam was removed. The same split feature layout currently showcases their existing EAST OAK wireless meat probe, linked to its actual case. Its supplied light-background product image remains unaltered. New 3C case creation is pending supplied material.
+- Generated DH20 and EAST OAK mock images were replaced by original project assets. EAST OAK shows its actual responsive website design, not a fabricated laptop scene.
+- ACACIA night image is an AI-expanded landscape treatment of the original campaign cover. Original project page remains unchanged. Product is smaller than the direction image; photographic identity and scene are retained.
+- Existing brand, KIKI, LELIAN, three SUNON exhibition cases, AI workflow and about links remain available below the mock's visible extent.
+- Underlined text links replace decorative arrow glyphs. No invented business results.
 
-**Focused region comparison evidence**
-- Hero: original product/app image remains sharp and undistorted; the square crop is intentional and keeps the receiver and app interface as the dominant recognition cue.
-- PDP grid: headings, feature imagery, and bottom icon rows remain inside the image bounds at the two-column desktop layout and one-column mobile layout.
-- Mobile navigation: PDP and A+ remain visible; the lower-priority Process link is hidden to prevent crowding.
+## Findings and fixes
+1. [P2, fixed] Mobile hero cropped the right side of the tent at 71% image position. Changed to 88%; final 390 px capture shows the complete tent.
+2. [P2, fixed] Header and hardware copy were too tall compared with the direction. Desktop header reduced from 76 to 60 px; redundant feature description removed; heading hierarchy strengthened. Re-captured and compared after fixes.
+3. [P2, fixed] Back-to-top anchor targeted main below the header. Anchor moved to the page wrapper. Browser click now places header at y=0.
+4. [P2, fixed] Potential 320 px feature-title wrapping. Mobile display sizes now use clamps; browser measured no text/link overflow at 320 px.
+5. [P3] Exact imagery and line endings differ from the generated mood direction to preserve real projects. This is a reviewed, intentional adaptation, not a missing asset.
 
-**Findings**
-- No actionable P0/P1/P2 visual or interaction issues remain.
-- [P3] The homepage cover uses artwork that already contains large English type, so the overlay title adds a second text layer. This is acceptable for the first review and can be revisited after the user chooses the final cover crop.
+## Required surfaces
+- Typography: native Chinese sans-serif, bold large two-line hero, distinct yellow-green role, smaller muted descriptor. Desktop header/feature title proportions refined. All core copy readable in mobile captures.
+- Spacing/layout: full-width photographic hero; balanced half-width hardware feature; paired project cards; spacious category groups. Mobile single-column with no horizontal overflow. Original case details are outside this homepage-only change.
+- Color: near-black #0b0d0e, panel #131618, white #f4f5f3, muted #aeb3b6, accent #dfff60. Contrast and accent hierarchy match the chosen direction; source product photography retains its own colors.
+- Images: original project assets preserved; landscape hero inspected. All image nodes loaded at desktop verification. No CSS-generated images or invented product logos.
+- Copy: role, branding/new-product/digital-experience focus, actual case titles and team-attributed DH20 880 / 110% retained. No invented 3C client, product outcomes or efficiency claims.
 
-**Comparison history**
-- Pass 1 found one mobile information-priority issue: the A+ navigation link was hidden while Process remained visible.
-- Fix: changed the mobile rule to keep PDP and A+ and hide the third, lower-priority Process link.
-- Post-fix evidence: mobile accessibility tree at 390 × 844 shows NIKKI / PORTFOLIO, PDP, and A+; the first-screen capture has no horizontal overflow or clipped controls.
-- Pass 2 found an image-ratio bug caused by the HTML `height` attributes winning over the responsive width while CSS did not explicitly reset height. Hero rendered at 520 × 1800 and PDP images at 495 × 1500, visibly compressing and cropping the square artwork.
-- Fix: added `height: auto`, preserved `aspect-ratio: 1 / 1`, and changed fitting to `contain` for the Hero and PDP image selectors.
-- Post-fix evidence: at the annotated 1177 × 784 viewport, Hero renders at 520 × 520 and all four PDP images render at 495 × 495; original 1800 × 1800 / 1500 × 1500 source content is fully visible.
-- Pass 3 applied the user's content-density annotation to the A+ chapter.
-- Fix: removed the conceptual section headline, supporting paragraph, and all three image captions; retained only `02 · A+ CONTENT` and the original artwork.
-- Post-fix evidence: at 1177 × 784, the A+ chapter now moves directly from the chapter label into the full-width visual work with no redundant text beneath the images.
-- Pass 4 replaced the Hero and PDP artwork with the official EAST OAK product-page square gallery at 1620 × 1620 px.
-- Fix: mapped the official product/App composition to Hero and the five official feature images to the PDP grid; retained `height:auto`, `aspect-ratio:1/1`, and `object-fit:contain`. The fifth PDP card is centered on desktop and returns to full width on mobile.
-- Post-fix evidence: HTTP and local asset checks pass, and every replacement asset reports 1620 × 1620 px. A fresh browser-rendered comparison could not be captured because the in-app browser's administrator security check was temporarily unavailable.
+## Comparison history
+- Initial combined evidence: /tmp/nikki-dark-preview/comparison.png. Revealed excessive header/feature height; addressed as above.
+- Final combined evidence: /tmp/nikki-dark-preview/comparison-final.png. Opened and visually compared side-by-side at same scale. Core layout, palette and hierarchy pass with documented real-asset adaptations.
+- Focused evidence: desktop-top.png, mobile-top-before.png versus mobile-top.png, mobile-sop.png. Focused inspection verified text, crop, menu spacing and workflow card density.
+- A capture immediately after reload showed pending images; discarded and re-captured after DOM confirmed all image nodes loaded. Final comparison uses loaded images.
 
-**Primary interactions tested**
-- Homepage V02 card opens the Meat Probe case route.
-- In-page PDP and A+ anchors resolve.
-- Full-resolution source images are linked from the displayed assets.
-- Amazon CTA resolves to the supplied live listing URL.
-- Back-to-top target resolves to `#top`.
+## Interaction and integrity checks
+- Browser tested hero CTA to #work, hardware case opening, back navigation, AI category jump, full AI workflow link and back-to-top.
+- Local href/src and fragment check: no missing local resources or anchors; all 12 existing project destinations retained.
+- No browser console errors during homepage inspection.
+- Desktop 946 px and mobile 390/320 px had document width equal to viewport width; no overflowing headings/paragraphs/links at 320 px.
+- No new scripts, external fonts, tracking, dependencies or runtime network services added to the website. Static preview only; not deployed.
 
-**Console and asset checks**
-- Browser console warnings/errors: none.
-- Local HTML `src` / `href` asset resolution: no missing files.
-- `git diff --check`: passed.
+# Project-page visual unification — 2026-11-10
 
-**Implementation checklist**
-- [x] Homepage visual card
-- [x] Dedicated short case page
-- [x] PDP, A+, and usage-story presentation
-- [ ] Fresh desktop and mobile visual capture after official-image replacement
-- [x] Working internal navigation and external listing CTA
+final result: passed with documented browser-log limitation
 
-final result: blocked
+## Scope
+12 public project pages now share project-theme.css: ACACIA, DH20, EAST OAK, LELIAN, wireless meat probe, BIG TOMATO, OP GLOBAL, KIKI, SUNON overview and its three detail cases. Local preview only. About, AI SOP and internal review pages are outside this project-page pass.
 
-# LELIAN Codex build command center — design QA
+## Visual direction and evidence
+- Source: selected dark direction 02, same image path recorded above.
+- Combined direction + project evidence: /tmp/nikki-project-unification/qa/source-project-comparison.jpg. Source shown at native 946 × 1663; ACACIA and SUNON are 1208 × 800 desktop captures at native size, stacked alongside. This compares shared palette, type hierarchy, borders and image treatment; the homepage composition is intentionally adapted to case-study content.
+- User preview: output/portfolio-preview/project-pages-preview.jpg in the ChatGPT project workspace.
+- Focused captures: acacia-collaboration.png, dh20-results-mobile.png, kiki-desktop-final.png, lelian-results-final.png and probe-evidence-final.png in the same QA directory.
+- Initial full-page captures contain unloaded lazy images and are inspection aids only, not final visual proof. Focused captures were taken after navigating to the relevant content. A stale header raster on KIKI cleared on reload; the final capture shows it correctly.
 
-## 2026-09-05 correction: target the two dialogue cards
+## Shared presentation
+- One navigation, split intro, responsibility row, chapter links and next-project footer.
+- Near-black editorial shell, white headings, muted body text and lime accents. Shared chapter typography, spacing and result hierarchy.
+- Original artwork/brand colors retained, including light evidence boards and embedded demos. Three SUNON detail intros use existing event photos. EAST OAK intro uses its actual website design.
+- No project business metrics rewritten. Scope notes and team attribution remain. Existing scripts preserved byte-for-byte; no added runtime library or external font.
 
-- Supersedes the command-center implementation below: user identified `.codex-proof__evidence` as the intended target.
-- Removed the previous runtime command-center replacement and its CSS. Restored the preceding workflow card and retained the original proof section.
-- Replaced the two clipped screenshot cards in static HTML with complete, responsive typeset dialogue summaries, explicitly labeled as edited from real conversation.
-- The source screenshot was inspected at 1578 × 1618. Input requirements, four collections, five text buttons, entry checks, HTTP 200 historical result, configurable section settings, and 5 files / +902 lines are preserved.
-- Full original screenshot remains in a native expandable details element, rendered at proportional width and automatic height with no crop.
-- Static verification passed: JavaScript syntax, whitespace, two static cards, no screenshot-crop wrappers, no runtime removal of proof section, and balanced CSS.
-- Browser visual verification remains pending: CUA state request timed out before a screenshot could be captured. No visual pass claimed.
+## Checks and fixes
+- Browser checked all 12 pages on desktop, 390 px and 320 px. Document width equals viewport width on both mobile sizes; all navigation headers fit.
+- LELIAN intentional horizontally scrollable comparison rails remain bounded within the page. DH20 direction tabs changed to stacked mobile buttons; selection behavior verified for direction 01 and 03.
+- Fixed LELIAN light-background captions after the existing script moves its showcase into a new section. Computed caption color now #303b35 on white.
+- Fixed OP GLOBAL overview anchor lost during hero replacement.
+- ACACIA tab click switches to its actual product-page iframe. Back-to-top restores scrollY=0 and header y=0. Original visibility/pause script unchanged.
+- All existing image nodes retained; the three SUNON detail pages gain a hero image. Local resource checks found no missing files. Original scripts are unchanged. The single OP GLOBAL anchor issue found was fixed.
+- One meat-probe image initially reported unloaded/failed during rapid page navigation; focused A+ section verification reported no broken images.
+- Browser logs contained two unattributed MutationObserver errors during multi-page navigation. The relevant project code contains no MutationObserver; ACACIA uses IntersectionObserver. Tested controls worked. Log origin could not be attributed by the browser API, so this report does not claim a completely clean console.
+- Animation pause logic was inspected and preserved; no new animation was added. Background-tab suspension was not separately re-tested in this styling pass.
 
-**Source visual truth**
-- Shared Codex URL supplied by the user: `https://chatgpt.com/s/cx_6a9bd2d7aa3481918b65f6df7e0e1850`; the public shell did not expose the conversation body to the available reader.
-- Real local project evidence: `assets/v2/lelian/codex-shopify-conversation-evidence.jpg`, 1578 × 1618 px.
-- Existing portfolio language retained: dark process chapter, restrained borders, compact technical labels, and the site’s current sans-serif typography.
+## Homepage cover correction — user-selected imagery
+- Restored EAST OAK homepage cover to the original outdoor fire-pit photograph (`east-oak-cover-d4d8bc4635ffc82e.webp`), replacing the website/device montage. Removed montage-specific padding/contain treatment.
+- Checked all 11 linked homepage project covers against the pre-redesign choices: all match. Dark layout retained; project detail pages unchanged by this correction.
+- Browser verified original image loaded and zero image padding. Final screenshot: ChatGPT project output/portfolio-preview/home-covers-restored.png. Local only; not deployed.
+- This correction supersedes the earlier QA note describing the EAST OAK homepage website screenshot.
 
-**Implemented direction**
-- Replaced the editorial two-card proof layout with one integrated dark build workspace.
-- Added a five-stage flow: Select, Specify, Codex, Verify, Deploy.
-- Kept the real Codex conversation as one complete image inside a scrollable evidence window instead of cropping it into two fragments.
-- Added a source-backed delivery manifest: 4 Collection hubs, 5 modified files, +902 lines, 200 live status, and desktop/tablet/mobile QA.
-- Added a responsive mobile treatment: the workflow rail scrolls horizontally and the conversation remains legible through two-axis scrolling rather than destructive scaling or cropping.
+## About page — dark theme follow-through
+- Reused project-theme.css for the navigation/footer and added about-dark.css for biography, portrait, timeline and contact sections. Intro/experience spacing and hierarchy now follow the same dark/lime portfolio system.
+- Main content text and all original image/iframe sources were programmatically compared with the pre-change About page and are identical. The drum illustration receives a monochrome inverted CSS treatment to suit the dark surface; its original app code and hit areas are unchanged.
+- Visually checked desktop 1208 px and mobile 390/320 px. No document overflow or overflowing text links. Journey/contact navigation checked. Native mail/tel targets retained. No missing local resources or same-page anchors; git diff --check passed.
+- Fixed the contact drum thumbnail blend background after mobile inspection. No audio playback claim: this pass verified rendering and page navigation, not audible output.
+- Proof: ChatGPT project output/portfolio-preview/about-dark-desktop.png and about-dark-mobile.png. Local preview only; not deployed.
 
-**Static verification**
-- JavaScript syntax: pass.
-- HTML parsing: pass.
-- CSS brace balance: pass.
-- Local LELIAN route: HTTP 200.
-- Conversation evidence asset: HTTP 200 and intrinsic dimensions confirmed.
-- `git diff --check`: pass.
+## Image clarity, dividers and English line — 2026-11-10
+- Restored 147 image references across homepage, About and 12 public project pages to their existing original source files recorded in the optimization manifest. The same images/crops remain; no generated replacement, upscaling or new compression was performed. Portrait/drum thumbnails retain their existing appropriately small responsive treatment.
+- Main portfolio image srcset variants were removed so high-density displays receive the full available source. SUNON evidence boards similarly load their full 2560 px file. Existing loading=lazy and async decoding retained. This deliberately trades larger per-image transfers for portfolio detail; the referenced original set is approximately 36.7 MB across all pages, not a single page load.
+- Matched image preloads updated to avoid downloading both the old optimized version and the original hero. All 174 img src references checked: no missing local files. Browser verified homepage OP GLOBAL at 2560 px, DH20 2000 px, EAST OAK 1800 px, and meat-probe intro at 1620 px.
+- Original-source limits remain: expanded homepage night hero 1586 px; ACACIA case hero 853 px; ACACIA cover 1076 px and SUNON anniversary photo 790 px. No larger same-image file found in the inspected repository sources. These cannot gain genuine detail from export scaling alone.
+- Removed project-facts borders and chapter-nav top border, reduced facts-to-navigation spacing, kept one lower chapter divider. Browser computed borders: facts 0 px, nav top 0 px, nav bottom 1 px.
+- Added English hero line: “Bringing good products to market.” Desktop plus 390/320 px checked; the line remains one line on both phone widths and does not overlap hero credit or CTA.
+- Proof in ChatGPT project output/portfolio-preview: home-english-clarity.png and project-spacing-fixed.png. Stylesheet versions bumped to avoid stale cached CSS. Local only; not deployed.
 
-**Finding**
-- [P2] Fresh desktop and mobile browser-rendered captures are unavailable.
-  Location: `projects/lelian.html#build-pipeline`.
-  Evidence: the selected Codex in-app browser timed out repeatedly while loading the existing long page and reset before a screenshot could be captured.
-  Impact: the new command-center composition has source and asset validation, but it cannot receive final visual sign-off in this turn.
-  Fix: rerun the desktop and mobile capture comparison when the in-app browser can load the route reliably.
+## Supplied ACACIA high-resolution photography
+- User supplied a 12787 × 7981 night original and 2160 × 1536 daytime original. External originals are untouched.
+- Night original exported without creative edits at 1600/2560/3200 px, JPEG quality 97, 4:4:4, progressive. Homepage hero and ACACIA card now reference this real photo, replacing the generated small hero and low-resolution card crop. Max 3200 px supports the 1600 CSS-pixel desktop shell at 2×.
+- Daytime photograph copied byte-for-byte to the website and used for ACACIA case intro, with contain to preserve tent, vehicle and setting.
+- Desktop 1280 px and mobile 390 px visually checked. Mobile object position 77% keeps the whole tent visible without covering copy. After restoring the browser’s actual 2× device scale, verified selection of the 2560 px night asset. No horizontal overflow.
+- Proof: output/portfolio-preview/home-original-hires.png and home-original-hires-mobile.png in the ChatGPT workspace. This supersedes earlier notes about the limited 1586 px night hero and 853 px ACACIA intro. Local only, not deployed.
 
-final result: blocked
 
-# Homepage equal-work grid — design QA
+## 2026-11-10 · Homepage hero typography refinement
+- Removed the hero English tagline per latest feedback. Reduced title sizing; first line weight 400, second line 600, supporting copy and role lighter.
+- Kept one primary CTA to #work; ACACIA is a quiet bottom-right linked project credit. Original photograph unchanged.
+- Browser verified 1280, 390 and 320 px layouts: no horizontal overflow. Primary CTA lands on #work with 24 px offset. Mobile photograph retains the tent. Local preview only.
+- Screenshots: output/portfolio-preview/home-refined-typography.png and home-refined-typography-mobile.png in the ChatGPT project workspace.
 
-**Source visual truth**
-- Selected mock: `/Users/nikki/.codex/generated_images/019ff141-7292-79e3-85e4-f72bd05aca0c/exec-0a62b485-84e0-4666-981e-fa28e835e354.png`
-- Source pixels: 864 × 1821 px; desktop portfolio page showing the portrait-led hero and equal two-column work grid.
 
-**Rendered implementation**
-- Local route: `http://localhost:4173/`
-- Intended desktop viewport: 1280 × 720 CSS px for the current in-app browser window.
-- Intended mobile viewport: 390 × 844 CSS px.
-- Implementation screenshot path: unavailable because the in-app browser's administrator security check became unavailable after the accepted first-screen capture.
-- State: normal homepage; seven existing projects, with IP and photography intentionally omitted until real assets and routes are supplied.
+## 2026-11-10 · Clickable hero, original print pages and intro backgrounds
+- Homepage banner photograph now links directly to ACACIA; primary #work CTA retains its destination. Verified both by browser clicks, including mobile.
+- Removed the #151a1d fill from all 12 project intro image containers; transparent PNGs now sit directly on the page #0b0d0e. EAST OAK verified visually. Artwork colors are retained.
+- ACACIA print-system.webp was a 2290px enlargement of a 1145px collage. Replaced it with six exports from the matching original Illustrator PDF at /Volumes/NIKKI/ACACIA2023/ACACIA众筹项目/mediakit/AC现在已有的图片/ac品牌书/20230407品牌书加封套_转曲的副本_复制.pdf. Export region excludes empty page margins; source PDF unchanged. Native export widths 1488–2058px. Text/line art rerendered from vectors; embedded photographs retain original source limits.
+- Desktop three-column layout, mobile one-column layout; direct large-image links verified. 1280 and 390px browser checks show no horizontal overflow; images loaded successfully. Screenshots in project workspace output/portfolio-preview/acacia-print-originals.png, acacia-print-originals-mobile.png and east-oak-unified-background.png. Local only.
 
-**Full-view comparison evidence**
-- The accepted first-screen browser capture shows the selected portrait-led hero, flat warm background, PingFang-first Chinese typography, original portrait crop, enlarged contact information, and matching navigation structure.
-- The browser accessibility tree confirms one uninterrupted work section with seven project links in this order: ACACIA, EARLY BIRD, EAST OAK, BIG TOMATO, LELIAN, OP GLOBAL, MEAT PROBE.
-- A rendered full-work-grid capture could not be accepted after the browser security check stopped responding.
 
-**Focused region comparison evidence**
-- Hero was visually inspected in the in-app browser at 1280 × 720: portrait, headline, biography, contact block, spacing, and flat background render correctly with no clipping.
-- Work-grid imagery and mobile reflow could not be visually captured; those regions were checked statically for asset resolution, equal card sizing, object-fit behavior, and one-column responsive rules.
+## 2026-11-10 · Complete original-image audit (supersedes earlier compression notes)
+- Audited 14 public pages / 179 static image references and four embedded web demos. Restored 348 old references across 21 files; 176 pre-optimization embedded assets recovered byte for byte and SHA-256 validated. Main pages have no generated assets/webp references or srcset alternatives.
+- Night photograph uses the supplied 12787 × 7981 JPEG verbatim. KIKI uses matching source PNGs, meat-probe A+ uses 4096 × 1679 PNGs. Existing source artwork was not overwritten or recompressed.
+- Exported 40 SVGs directly from original PDFs for SUNON, OP GLOBAL, Big Tomato and ACACIA print pages. All text is paths; embedded photographs retain source detail. SUNON cover crops matched the existing selections, with source rectangles recorded in /tmp/nikki-image-audit/kv-crops.json.
+- Replaced SUNON live-photo WebPs with byte-preserved JPEG image streams extracted from the supplied PDF. Source-photo limits remain (anniversary 790 × 420, entry 704 × 528); ACACIA media cards remain 279–336 px originals. Their forced enlargement is removed. SVG and raster examples visually checked in browser.
+- Native width/aspect metadata reserves space for lazy images and prevents stretched small evidence images. 14 mobile checks at 390px: no overflow or broken visible images. Desktop checks at 1440px: no overflow. Four embedded demos: no broken visible images. All changed HTML img paths exist; git diff --check passed.
+- Old optimize-web-images.py is deliberately disabled; repository AGENTS.md records the user requirement to preserve image originals. This is a local revision, not deployed. Full Chinese audit report saved in the ChatGPT project output/portfolio-preview/图片清晰度检查.md.
 
-**Required fidelity surfaces**
-- Fonts and typography: homepage now uses `PingFang SC` first, with Chinese sans-serif fallbacks; hero hierarchy matches the selected direction. Full grid typography still needs a fresh rendered capture.
-- Spacing and layout rhythm: desktop uses two equal 500 px-high columns and mobile uses one column; seven cards intentionally leave an unpaired final card until future work is added.
-- Colors and visual tokens: the page keeps the existing flat `#f2f1ef` paper surface; no new page-background gradient was added.
-- Image quality and asset fidelity: all seven cards use existing source assets; the square Meat Probe artwork uses `object-fit: cover` without dimension distortion. Final crop approval needs browser evidence.
-- Copy and content: section labels no longer divide work into core/small or commercial categories; project titles and destinations match the confirmed order.
 
-**Findings**
-- [P2] Full desktop work-grid and mobile screenshots are missing.
-  Location: homepage `#work` at desktop and mobile breakpoints.
-  Evidence: the first-screen browser capture succeeded and the accessibility tree confirmed the correct order, but subsequent browser captures were blocked by the administrator security-check outage.
-  Impact: image crops, final grid rhythm, and mobile rendering cannot receive visual sign-off yet.
-  Fix: rerun desktop and 390 × 844 captures when the in-app browser security check is available, then compare them with the selected mock.
-
-**Static verification**
-- Homepage, all seven case routes, and all seven homepage image assets return HTTP 200 from the local server.
-- HTML parsing succeeds, CSS braces are balanced, and `git diff --check` passes.
-
-**Comparison history**
-- Pass 1: the initial browser capture confirmed the hero implementation and contact sizing.
-- Revision: merged the previous core/commercial sections into one equal-size work grid and applied the user-specified project order.
-- Post-revision evidence: DOM order and local route/asset checks pass; full rendered comparison remains blocked by the browser security check.
-
-**Implementation checklist**
-- [x] One equal-weight project section.
-- [x] Seven existing projects in the confirmed order.
-- [x] PingFang-first homepage typography.
-- [x] Existing project links and source imagery retained.
-- [ ] Fresh desktop work-grid and mobile visual capture.
-- [ ] Add IP and photography only after real titles, covers, and routes are supplied.
-
-final result: blocked
-
-# OP GLOBAL branding case — design QA
-
-**Source visual truth**
-- Source PDF: `/Volumes/NIKKI/NIKKI💕/OP-LOGO/opg-LOGO_复制.pdf`
-- Source format: 23-page landscape brand presentation; PDF reports a 1920 × 1080 pt canvas, with three pages using slightly different crop boxes.
-- Source inspection evidence: all 23 pages were rendered into `tmp/pdfs/opg-logo/contact-sheet.jpg` and inspected together as a complete visual sequence.
-
-**Rendered implementation**
-- Local route: `http://localhost:4173/projects/op-global.html?v=20260902-op-global-r1`
-- Homepage entry: `http://localhost:4173/#visual-work`
-- Implementation screenshot path: unavailable because the Codex in-app browser's administrator security check was temporarily unavailable on every local navigation attempt.
-- Intended desktop viewport: 1200 × 784 CSS px.
-- Intended mobile viewport: 390 × 844 CSS px.
-- Export density: source pages rendered at 96 DPI to 2560 × 1440 px; pages 07–09 preserve their native crop-box dimensions of 2582 × 1451, 2595 × 1462, and 2571 × 1406 px.
-
-**Full-view comparison evidence**
-- The source contact sheet confirms a complete sequence from initial symbol exploration through the final wordmark, grid, palette, stationery, signage, freight, and social applications.
-- The implementation maps every source page one-for-one, in the original order, with zero inter-page gap for the Behance-style long presentation.
-- The homepage card uses the final blue OP GLOBAL identity board and links to the dedicated case rather than retaining the old ONE PORT label.
-
-**Focused region comparison evidence**
-- Image fidelity was checked directly on the exported page assets: no page is reconstructed in HTML, and no source artwork is replaced or cropped.
-- Pages 07–09 were given their exact intrinsic width and height so their distinct PDF crop boxes are not forced into 16:9.
-- A browser-rendered focused-region comparison remains unavailable because local browser navigation was blocked by the security-check outage.
-
-**Findings**
-- No missing page, file-resolution, HTML parsing, or asset-ratio issue was found in static validation.
-- [P2] Browser-rendered desktop/mobile evidence is missing, so final typography, responsive spacing, and runtime image loading cannot be visually approved yet.
-  Location: `projects/op-global.html` at the two intended viewports.
-  Evidence: local HTTP returns 200 and all 23 assets resolve, but the chosen in-app browser refused local navigation before capture.
-  Impact: the page cannot receive a visual QA pass without rendered evidence.
-  Fix: rerun the desktop and mobile captures when the in-app browser security check is available.
-
-**Primary interactions checked statically**
-- Homepage OP GLOBAL card resolves to the new case route.
-- Overview, Brand System, Applications, All Work, and Back to Top targets are present.
-- Every displayed presentation page links to its full-resolution source export.
-
-**Implementation checklist**
-- [x] Rename the visual-work entry from ONE PORT to OP GLOBAL.
-- [x] Add a dedicated Behance-style branding case.
-- [x] Preserve all 23 source pages and intrinsic crop-box ratios.
-- [x] Add responsive editorial framing around the source deck.
-- [ ] Capture and compare desktop and mobile browser renders.
-
-**Comparison history**
-- Revision 2 clarified the two concepts after direction review: pages 01–13 are now explicitly labeled `DIRECTION 01 · EXPLORATION` and shown in a lower-emphasis two-column process grid.
-- Pages 14–18 are labeled `DIRECTION 02 · FINAL IDENTITY` and retain full-width presentation priority.
-- Pages 19–23 now follow a dedicated `BRAND APPLICATIONS` chapter, connecting the selected identity to stationery, signage, freight, vehicle, and social touchpoints.
-- Mobile collapses the exploration grid to one column so every source page remains complete and readable without cropping.
-- Static post-fix evidence: local route returns HTTP 200, HTML parsing passes, source order assertions pass, all 23 image assets resolve, and `git diff --check` passes.
-- Revision 3 shortened Direction 01 from 13 displayed pages to six representative frames (01, 03, 04, 07, 08, 13) and changed the desktop process grid from two to three columns. This reduces the exploration chapter from seven image rows to two while preserving concept, construction, key visual, stationery, and signage evidence.
-- Post-fix static evidence: the exploration wrapper contains exactly six images, Direction 02 still begins with page 14, the local route returns HTTP 200, HTML parsing passes, and `git diff --check` passes. Browser capture remains blocked by the same temporary in-app security check.
-
-final result: blocked
+## 2026-11-10 · Simplified homepage project hierarchy
+- Removed the “更多品牌与展会作品” banner, Explore introduction, category numbering and generic repeated category descriptions. Three compact index links lead directly to 品牌设计 / 电商与独立站 / 展会体验. Each heading is followed immediately by its projects.
+- AI 协作工作流 is a separate main-level working-method section after the work collection, excluded from project classification. SUNON overview remains available beside its category heading.
+- Image attributes and sources were compared before/after and are identical. No image processing or recompression. Desktop 1280px and mobile 390px checked; no horizontal overflow. All three index anchors verified by actual browser clicks. Screenshots: ChatGPT project output/portfolio-preview/home-simplified-work.png and home-simplified-work-mobile.png. Local only.

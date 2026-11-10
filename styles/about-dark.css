@@ -1,0 +1,43 @@
+/* About follows the shared dark portfolio shell; original copy and imagery remain. */
+.about-dark{color-scheme:dark;--pine:#dfff60}
+.about-dark .project-nav a[aria-current="page"]{border-bottom:2px solid var(--accent);padding-block:8px}
+.about-dark .about-page{background:var(--paper)}
+.about-dark .about-drum-full{height:min(760px,calc(100svh - 60px));min-height:420px;background:#0d0e10;border-bottom:1px solid var(--line);overflow:hidden}
+.about-dark .about-drum-full iframe{filter:grayscale(1) invert(1);background:transparent}
+.about-dark .drum-welcome{bottom:22px;gap:12px;color:var(--muted);font-size:12px}
+.about-dark .drum-welcome a{font-size:12px;color:var(--ink);background:#0b0d0e;padding:10px 18px;border:1px solid var(--line);border-radius:2px}
+.about-dark .drum-welcome a:hover{border-color:var(--accent);color:var(--accent)}
+.about-dark .about-section{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:90px;padding-block:88px 100px;border-top:0}
+.about-dark .about-intro h1{font-size:clamp(36px,4.5vw,58px);line-height:1.22;font-weight:600;letter-spacing:-.035em;margin:24px 0 28px}
+.about-dark .about-intro .about-lead{font-size:18px;line-height:1.9;color:var(--ink)}
+.about-dark .about-intro .about-copy{font-size:15px;line-height:1.95;color:var(--muted);margin-top:24px}
+.about-dark .ai-method-about{border-color:var(--line);margin-top:28px;padding-top:20px}
+.about-dark .ai-method-about a{font-size:13px;line-height:1.9;color:var(--accent);border-color:var(--line)}
+.about-dark .about-portrait{gap:24px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
+.about-dark .about-portrait img{width:140px;height:174px;object-fit:cover;object-position:center 35%;border-radius:2px;transform:none}
+.about-dark .about-portrait strong{font-size:18px;color:var(--ink)}
+.about-dark .about-portrait figcaption{font-size:10px;line-height:1.7;color:var(--muted)}
+.about-dark .about-link{font-size:13px;line-height:1.8;color:var(--ink);border-color:var(--line);margin-top:24px}
+.about-dark .about-link:hover{color:var(--accent);border-color:var(--accent)}
+.about-dark .about-timeline{padding-left:10px}
+.about-dark .about-timeline li{padding:0 0 48px 34px;border-color:var(--line)}
+.about-dark .about-timeline li:last-child{padding-bottom:0;border-color:transparent}
+.about-dark .about-timeline li:before{background:var(--paper);border-color:#87928a}
+.about-dark .about-timeline .timeline-current:before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px #262e1b}
+.about-dark .about-timeline .timeline-date{color:var(--accent);font-size:14px;line-height:1.7;letter-spacing:.03em}
+.about-dark .timeline-date span{color:var(--muted);font-size:10px}
+.about-dark .about-timeline h3{font-size:26px;line-height:1.5;font-weight:600;margin-top:14px}
+.about-dark .about-timeline .timeline-role{font-size:13px;line-height:1.9;color:var(--ink);margin-top:8px}
+.about-dark .timeline-copy{font-size:15px;line-height:1.95;color:var(--muted)}
+.about-dark .about-timeline .timeline-tags{font-size:11px;line-height:1.9;color:var(--accent);letter-spacing:.025em}
+.about-dark .about-contact{background:#14181a;border-color:var(--line);padding-block:72px}
+.about-dark .contact-layout{grid-template-columns:minmax(0,1fr) 240px;gap:50px}
+.about-dark .about-contact h2{font-size:clamp(40px,5vw,64px);font-weight:600;line-height:1.3;margin-top:22px}
+.about-dark .contact-email{font-size:clamp(20px,2.6vw,32px);margin-top:24px;line-height:1.7;border-color:var(--line)}
+.about-dark .contact-wechat{font-size:12px;line-height:1.8;margin-top:18px;color:var(--muted)}
+.about-dark .contact-drum{background:#14181a}
+.about-dark .contact-drum img{filter:grayscale(1) contrast(1.2) brightness(1.12) invert(1);mix-blend-mode:screen}
+.about-dark .contact-drum span{color:var(--muted);font-size:11px}
+.about-dark .about-page a:focus-visible{outline-color:var(--accent)}
+@media(max-width:1000px){.about-dark .about-section{gap:48px}.about-dark .about-intro .about-lead{font-size:16px}.about-dark .about-timeline h3{font-size:23px}}
+@media(max-width:760px){.about-dark .about-drum-full{height: min(640px,calc(100svh - 64px));min-height:360px}.about-dark .about-section{grid-template-columns:1fr;gap:60px;padding-block:48px 60px}.about-dark .about-intro h1{font-size:36px;margin-block:22px}.about-dark .about-intro .about-copy{font-size:14px}.about-dark .about-portrait img{width:100px;height:128px}.about-dark .about-portrait{gap:20px}.about-dark .about-portrait strong{font-size:16px}.about-dark .about-portrait figcaption{font-size:9px}.about-dark .about-timeline{padding-left:6px}.about-dark .about-timeline li{padding-left:24px;padding-bottom:36px}.about-dark .timeline-copy{font-size:14px}.about-dark .timeline-date span{margin-left:3px}.about-dark .about-contact{padding-block:48px}.about-dark .contact-layout{grid-template-columns:1fr;gap:32px}.about-dark .contact-drum{width:180px;justify-self:center}.about-dark .about-contact h2{font-size:40px}.about-dark .contact-email{font-size:clamp(17px,5vw,24px)}.about-dark .drum-welcome{bottom:18px}}

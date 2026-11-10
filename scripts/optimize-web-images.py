@@ -3,6 +3,8 @@
 Mechanical reference updates cover HTML, CSS and local JavaScript. Original-image
 links remain intact. Run from the repository root with the bundled Python runtime.
 """
+raise SystemExit("Image conversion is disabled: preserve original portfolio assets and do not generate compressed or resized delivery variants.")
+
 import base64
 import hashlib
 import io
