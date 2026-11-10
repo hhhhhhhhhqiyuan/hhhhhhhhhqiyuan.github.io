@@ -133,3 +133,10 @@ final result: passed with documented browser-log limitation
 - Removed the “更多品牌与展会作品” banner, Explore introduction, category numbering and generic repeated category descriptions. Three compact index links lead directly to 品牌设计 / 电商与独立站 / 展会体验. Each heading is followed immediately by its projects.
 - AI 协作工作流 is a separate main-level working-method section after the work collection, excluded from project classification. SUNON overview remains available beside its category heading.
 - Image attributes and sources were compared before/after and are identical. No image processing or recompression. Desktop 1280px and mobile 390px checked; no horizontal overflow. All three index anchors verified by actual browser clicks. Screenshots: ChatGPT project output/portfolio-preview/home-simplified-work.png and home-simplified-work-mobile.png. Local only.
+
+
+## 2026-11-10 · Homepage banner loading optimization
+- User reported slow loading of the first banner after the original-file release. This is a narrow performance exception for the shared ACACIA homepage night photograph. Original 12787 × 7981 JPEG is unchanged (SHA-256 verified).
+- Added separate quality-95 WebP display files: 1600 × 999 (324936 bytes), 2560 × 1598 (670078 bytes), 3200 × 1997 (953514 bytes); actual filesystem size verification retained in workspace banner-performance.json. Browser chooses 1600w at desktop 1280px/DPR1 and 2560w at mobile 388px/DPR2. Mobile 390px/DPR1 chooses 1600w. Matching responsive preload prevents a fallback double download.
+- Same photograph's homepage card uses the 1600w display file so it cannot trigger the 33,849,452-byte original in the background. No other project image sources changed.
+- Desktop and mobile appearance checked; no overflow. Banner link still reaches ACACIA. Original source policy remains in effect for other assets; the old site-wide compression script stays disabled.
