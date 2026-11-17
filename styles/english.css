@@ -1,0 +1,60 @@
+/* English copy uses the existing design, artwork and system font stack. */
+html[lang="en"] { hyphens: none; }
+.english-version { overflow-wrap: break-word; }
+.english-version .wordmark span,
+.english-version .project-wordmark span { letter-spacing: .08em; }
+.english-version .hero-copy { max-width: min(650px, 58vw); }
+.english-version .hero-copy h1 {
+  font-size: clamp(40px, 5.3vw, 76px);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+.english-version .hero-role { font-size: clamp(13px, 1.25vw, 17px); letter-spacing: .035em; }
+.english-version .hero-description { max-width: 34ch; font-size: clamp(15px, 1.45vw, 20px); line-height: 1.55; }
+.english-version .hero-cta { font-size: clamp(14px, 1.4vw, 19px); }
+.english-version .hero-credit { font-size: 12px; letter-spacing: .02em; }
+.english-version .work-tile h3 { font-size: clamp(20px, 2.25vw, 32px); line-height: 1.2; letter-spacing: -.02em; }
+.english-version .work-tile p { font-size: 12px; line-height: 1.6; }
+.english-version .work-category h2 { font-size: clamp(28px, 3.1vw, 44px); letter-spacing: -.035em; }
+.english-version .project-intro h1 { font-size: clamp(36px, 5vw, 70px); line-height: 1.08; }
+.english-version .project-subtitle { font-size: clamp(20px, 2.25vw, 30px); line-height: 1.25; max-width: 28ch; }
+.english-version .project-description { max-width: 68ch; line-height: 1.8; }
+.english-version .project-role { display: block; line-height: 1.7; }
+.english-version .project-role > span { display: block; margin-bottom: 6px; }
+.english-version .case-section__head h2,
+.english-version .sunon-section h2 { font-size: clamp(27px, 3vw, 44px); line-height: 1.2; letter-spacing: -.025em; }
+.english-version .case-section__head p,
+.english-version .result-role p,
+.english-version .sunon-section p { line-height: 1.8; }
+.english-version .result-highlights { align-items: start; }
+.english-version .result-highlights__text { font-size: clamp(24px, 3vw, 40px); overflow-wrap: anywhere; }
+.english-version .social-metrics strong { white-space: nowrap; }
+.english-version .ai-sop-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.english-version .ai-sop-card h3 { font-size: clamp(23px, 2.8vw, 36px); line-height: 1.25; }
+.english-version .ai-sop-card p { line-height: 1.65; }
+.english-version .ai-sop-phases h4 { font-size: 18px; }
+.english-version .ai-sop-phases p { font-size: 13px; }
+.english-version .ai-sop-phases small { display: block; font-size: 11px; line-height: 1.6; }
+.english-version .edition-link { display: inline-block; font-size: 12px; line-height: 1.5; color: var(--muted, #aeb3b6); margin: 12px 0; }
+.english-version .flow-board .loop-label { width: 70px; max-width: 70px; font-size: 11px; line-height: 1.4; writing-mode: horizontal-tb; white-space: normal; letter-spacing: 0; }
+.english-version .flow-board .loop-label span { display: block; margin-top: 5px; }
+.english-version .flow-board .pass-label { font-size: 10px; max-width: 120px; }
+.english-version .step-name { line-height: 1.3; }
+@media (max-width: 720px) {
+  .english-version .hero-copy { max-width: 88%; }
+  .english-version .hero-copy h1 { font-size: clamp(36px, 8.5vw, 52px); }
+  .english-version .hero-role { font-size: 12px; }
+  .english-version .hero-description { font-size: 15px; max-width: 28ch; }
+  .english-version .hero-credit { max-width: 70%; font-size: 10px; }
+  .english-version .project-chapters { gap: 16px; flex-wrap: wrap; }
+  .english-version .project-chapters a { font-size: 12px; }
+  .english-version .work-directory nav { gap: 16px; }
+  .english-version .work-directory a { font-size: 13px; }
+  .english-version .work-tile h3 { font-size: 22px; }
+  .english-version .ai-sop-card { grid-template-columns: minmax(0, 1fr); }
+  .english-version .project-next { font-size: clamp(22px, 5.5vw, 34px); line-height: 1.25; }
+}
+@media (max-width: 480px) {
+  .english-version .flow-board .loop-label { width: 34px; max-width: 34px; font-size: 9px; }
+  .english-version .flow-board .pass-label { font-size: 9px; max-width: 105px; }
+}
